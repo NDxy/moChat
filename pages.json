@@ -1,17 +1,35 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/news/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "信息"
 			}
 		}
 	    ,{
             "path" : "pages/chat/index",
             "style" :                                                                                    
             {
-                "navigationBarTitleText":"信息"
+                "navigationBarTitleText":"聊天"
                 ,
+                "enablePullDownRefresh": false
+            }
+             
+        }
+        ,{
+            "path" : "pages/contact/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "联系人",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/me/index",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的",
                 "enablePullDownRefresh": false
             }
             
@@ -19,8 +37,30 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "moChat",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#20c3d0",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/news/index",
+			"iconPath": "static/tabBar/news.png",
+			"selectedIconPath": "static/tabBar/news_chk.png",
+			"text": "信息"
+		}, {
+			"pagePath": "pages/contact/index",
+			"iconPath": "static/tabBar/contact.png",
+			"selectedIconPath": "static/tabBar/contact_chk.png",
+			"text": "联系人"
+		}, {
+			"pagePath": "pages/me/index",
+			"iconPath": "static/tabBar/me.png",
+			"selectedIconPath": "static/tabBar/me_chk.png",
+			"text": "联系人"
+		}]
 	}
 }

@@ -1,13 +1,41 @@
 {
   "pages": [
-    "pages/index/index",
-    "pages/chat/index"
+    "pages/news/index",
+    "pages/chat/index",
+    "pages/contact/index",
+    "pages/me/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "moChat",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#20c3d0",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/news/index",
+        "iconPath": "static/tabBar/news.png",
+        "selectedIconPath": "static/tabBar/news_chk.png",
+        "text": "信息"
+      },
+      {
+        "pagePath": "pages/contact/index",
+        "iconPath": "static/tabBar/contact.png",
+        "selectedIconPath": "static/tabBar/contact_chk.png",
+        "text": "联系人"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "iconPath": "static/tabBar/me.png",
+        "selectedIconPath": "static/tabBar/me_chk.png",
+        "text": "联系人"
+      }
+    ]
   },
   "usingComponents": {}
 }
