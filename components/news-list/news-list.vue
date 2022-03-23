@@ -48,13 +48,13 @@
 			statusCheck(){
 				let statusTxt = "1"
 				switch (this.status){
-					case 1:
+					case '1':
 						statusTxt = "在线"
 						break;
-					case 2:
+					case '2':
 						statusTxt = "免扰"
 						break;
-					case 3:
+					case '3':
 						statusTxt = "禁言"
 						break;
 					default:
@@ -71,12 +71,13 @@
 		box-sizing: border-box;
 		display: flex;
 		flex-direction: row;
-		padding: 24upx;
+		// padding: 24upx;
 		position: relative;
 		
 		.header_icon {
 			width: 110upx;
 			height: 110upx;
+			padding: 24upx;
 			.icon{
 				width: 110upx;
 				height: 110upx;
@@ -86,7 +87,7 @@
 		.title_massge,.time_status {
 			display: flex;
 			flex-direction: column;
-			padding: 12upx 24upx;
+			padding: 36upx 0;
 			justify-content: space-between;
 			.title{
 				color: #383838;
@@ -102,21 +103,24 @@
 		
 		.title_massge{
 			box-sizing: border-box;
-			width: calc(100% - 244upx);
+			width: calc(100% - 344upx);
 		}
 		
 		.time_status{
-			width: 110upx;
+			width: 210upx;
+			padding: 36upx 24upx;
+			align-items: flex-end;
 		}
 		
 		&::after{
 			content: "";
-			width: calc(100% - 134upx);
+			width: calc(100% - 158upx);
 			position: absolute;
 			bottom: 0;
 			right: 0;
 			height: 1px;
-			background-color: #c9c9c9;
+			background-color: #cecece;
+			transform: scaleY(.5);
 		}
 	}
 </style>
