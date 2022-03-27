@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="news_lists">
-			<news-list title="莫莫" time="2021年6月1日" massge="嗯啊 爱你哟 小宝贝" header="../../static/logo.png" status="1"></news-list>
+			<news-list @click="pathTo" title="莫莫" time="2021年6月1日" massge="嗯啊 爱你哟 小宝贝" header="../../static/logo.png" status="1"></news-list>
 			<news-list title="莫莫" time="2021年6月1日" massge="嗯啊 爱你哟 小宝贝" header="../../static/logo.png" status="1"></news-list>
 			<news-list title="莫莫" time="2021年6月1日" massge="嗯啊 爱你哟 小宝贝" header="../../static/logo.png" status="1"></news-list>
 			<news-list title="莫莫" time="2021年6月1日" massge="嗯啊 爱你哟 小宝贝" header="../../static/logo.png" status="1"></news-list>
@@ -20,7 +20,11 @@
 
 		},
 		methods: {
-
+			pathTo(){
+				uni.navigateTo({
+					url: '../chat/index'
+				})
+			}
 		}
 	}
 </script>
