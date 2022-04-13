@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/news/index",
     "pages/chat/index",
     "pages/contact/index",
-    "pages/me/index"
+    "pages/me/index",
+    "pages/register/register"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -56,6 +56,11 @@
 		width: 100vh;
 		background-color: #f5f5f5;
 	}
+	.chat_massege_box{
+		text-align: center;
+		color: #999;
+		font-size: 20rpx;
+	}
 	.action_box{
 		// height: 120rpx;
 		position: fixed;

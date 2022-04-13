@@ -1,40 +1,47 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "用户登录",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/news/index",
 			"style": {
 				"navigationBarTitleText": "信息"
 			}
+		}, {
+			"path": "pages/chat/index",
+			"style": {
+				"navigationBarTitleText": "聊天",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/contact/index",
+			"style": {
+				"navigationBarTitleText": "联系人",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/me/index",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/chat/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText":"聊天"
-                ,
-                "enablePullDownRefresh": false
-            }
-             
-        }
-        ,{
-            "path" : "pages/contact/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "联系人",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/me/index",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "我的",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "moChat",

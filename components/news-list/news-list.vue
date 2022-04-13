@@ -1,5 +1,5 @@
 <template>
-	<view class="news-list">
+	<view class="news-list" @click="onClick()">
 		<view class="header_icon">
 			<image class="icon" :src="header" mode=""></image>
 		</view>
