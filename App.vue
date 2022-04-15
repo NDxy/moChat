@@ -12,6 +12,13 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	/*每个页面公共css */
+	// @import '~@/common/style/variable.scss';
+	@import url('/common/style/variable.scss')
+	
+	.register{
+		color: $mo-color-warning
+	}
+	
 </style>

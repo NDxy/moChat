@@ -54,4 +54,7 @@
 			}
 		}
 	}
+	// .register{
+	// 	color: $mo-color-warning
+	// }
 </style>
