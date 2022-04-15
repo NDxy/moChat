@@ -2,7 +2,7 @@
 	<view class="container">
 		<view class="header">
 			<view class="title">
-				新用户注册
+				重置密码
 			</view>
 		</view>
 		<view class="forms">
@@ -10,7 +10,7 @@
 			<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
 			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码"/>
 			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请确认用户密码"/>
-			<mo-button @click='register'>立即注册</mo-button>
+			<mo-button @click="resetPassword">立即重置</mo-button>
 		</view>
 		
 	</view>
@@ -28,9 +28,9 @@
 			};
 		},
 		methods:{
-			register(){
+			resetPassword(){
 				uni.navigateTo({
-					url: './completion'
+					// url: '../register/register'
 				})
 			},
 			getVerification(e){
@@ -47,7 +47,7 @@
 					this.btnRight = time + 's重新获取';
 					this.timer = setTimeout(()=>{this.countDown(time)},1000)
 				}
-			}
+			},
 		}
 	}
 </script>

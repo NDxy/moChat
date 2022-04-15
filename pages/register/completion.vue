@@ -1,16 +1,18 @@
 <template>
 	<view class="container">
 		<view class="header">
-			<view class="title">
-				新用户注册
+			<view class="headerImg">
+				<image src="../../static/header.jpeg" mode="选择头像"></image>
 			</view>
 		</view>
 		<view class="forms">
-			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱"/>
-			<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
-			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码"/>
-			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请确认用户密码"/>
-			<mo-button @click='register'>立即注册</mo-button>
+			<mo-input icon="phone" :showClear="true" v-model="userName" placeholder="请输入昵称"/>
+			<mo-select icon="label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select>
+			<mo-select icon="gender">性别</mo-select>
+			<mo-select icon="birthday">生日</mo-select>
+			<mo-select icon="district">地区</mo-select>
+			<mo-select icon="vocation">职业</mo-select>
+			<mo-button @click='completion'>提交信息</mo-button>
 		</view>
 		
 	</view>
@@ -28,10 +30,8 @@
 			};
 		},
 		methods:{
-			register(){
-				uni.navigateTo({
-					url: './completion'
-				})
+			completion(){
+				
 			},
 			getVerification(e){
 				this.rbtnDisabled = true;

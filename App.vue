@@ -15,10 +15,10 @@
 <style lang="scss">
 	/*每个页面公共css */
 	// @import '~@/common/style/variable.scss';
-	@import url('/common/style/variable.scss')
+	@import 'common/style/variable.scss';
 	
 	.register{
-		color: $mo-color-warning
+		color: $mo-color-warning;
 	}
 	
 </style>

@@ -13,6 +13,9 @@
 			<view class="icon see_icon" v-if="type == 'password' && inputVal!=''" @click="showPassword">
 				<image :src="'../../static/icon/'+ (eyes?'nosee':'cansee') +'.png'" mode="see"></image>
 			</view>
+			<view v-if="btnRightTxt != ''" class="btn_right" :class="{disabled: rbtnDisabled}" @click="rbtnClick">
+				{{btnRightTxt}}
+			</view>
 		</view> 
 	</view>
 </template>
@@ -40,13 +43,22 @@
 			showClear: {
 				type: Boolean,
 				default: false
+			},
+			btnRight: {
+				type: String,
+				default: ''
+			},
+			rbtnDisabled: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
 			return {
 				inputVal: this.value,
 				eyes: false,
-				inputType: this.type
+				inputType: this.type,
+				btnRightTxt: this.btnRight
 			};
 		},
 		watch:{
@@ -56,6 +68,9 @@
 			type(newV, oVal){
 				this.inputType = type
 				this.eyes = newV != 'password'
+			},
+			btnRight(newV, oVal){
+				this.btnRightTxt = newV
 			}
 		},
 		methods:{
@@ -65,6 +80,12 @@
 			showPassword(){
 				this.eyes = !this.eyes
 				this.inputType = this.eyes?'text':'password'
+			},
+			rbtnClick(){
+				if(this.rbtnDisabled){
+					return
+				}
+				this.$emit('rbtnClick')
 			}
 		}
 	}
@@ -83,12 +104,12 @@
 			align-items: center;
 			width: 80%;
 			height: 80rpx;
-			padding: 12rpx;
+			padding: 12rpx 24rpx;
 			border-radius: 50rpx;
 			background-color: #f6f6f6;
 			.icon{
-				width: 80rpx;
-				height: 80rpx;
+				// width: 80rpx;
+				// height: 80rpx;
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -108,6 +129,12 @@
 		}
 		.plhd_class{
 			color: #999;
+		}
+		.btn_right{
+			color: #20c3d0;
+			&.disabled{
+				color: #B9E8EA;
+			}
 		}
 	}
 </style>

@@ -13,6 +13,9 @@
 			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码"/>
 			<mo-button @click="toHome">登 录</mo-button>
 		</view>
+		<view class="forget">
+			<text class="register" @click="toResetPassword">忘记密码？</text>
+		</view>
 		
 	</view>
 </template>
@@ -35,6 +38,11 @@
 				uni.switchTab({
 					url: '../news/index'
 				})
+			},
+			toResetPassword(){
+				uni.navigateTo({
+					url: '../reset-password/reset-password'
+				})
 			}
 		}
 	}
@@ -48,13 +56,21 @@
 			.title{
 				font-size: 48rpx;
 			}
-			.hint{
-				font-size: 24rpx;
-				color: #999;
-			}
 		}
 	}
-	// .register{
-	// 	color: $mo-color-warning
+	
+	.hint{
+		font-size: 26rpx;
+		color: #999;
+	}
+	// .register, .forget{
+	// 	// color: $mo-color-warning;
 	// }
+	.forget{
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin: 80rpx;
+		@extend .hint
+	}
 </style>

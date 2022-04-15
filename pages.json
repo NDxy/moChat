@@ -40,8 +40,24 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/reset-password/reset-password",
+			"style": {
+				"navigationBarTitleText": "重置密码",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	],
+	    ,{
+            "path" : "pages/register/completion",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "完善信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "moChat",
