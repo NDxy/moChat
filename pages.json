@@ -57,6 +57,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/friends/friendInfo",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

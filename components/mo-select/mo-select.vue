@@ -12,7 +12,7 @@
 				</template>
 			</view>
 			<view class="hint" v-if="hint != ''">
-				<text>{{hint}}</text>
+				<input type="text" v-model="hint" :disabled="true"/>
 			</view>
 			<view class="icon right_icon">
 				<image :src="'../../static/icon/right.png'" mode="see"></image>
@@ -83,8 +83,8 @@
 			}
 			.hint{
 				flex: 1;
-				text{
-					display: block;
+				input{
+					display: inline-block;
 					width: 100%;
 					padding: 0 12rpx;
 					box-sizing: border-box;
@@ -92,6 +92,9 @@
 					overflow: hidden;
 					white-space: nowrap;// 控制不换行
 					text-overflow: ellipsis;// 控制省略部分以...结束
+				}
+				.value{
+					
 				}
 			}
 		}
