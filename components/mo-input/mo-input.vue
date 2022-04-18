@@ -30,7 +30,7 @@
 		props:{
 			value: {
 				type: String,
-				default: "text"
+				default: ""
 			},
 			type: {
 				type: String,

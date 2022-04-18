@@ -10,7 +10,8 @@
 		</view>
 		<view class="forms">
 			{{userName}}
-			<custom-input placeholder="请输入内容" borderType="outLine" type="text" v-model="userName"></custom-input>
+			{{password}}
+			
 			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
 			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码" />
 			<mo-button @click="toHome">登 录</mo-button>
