@@ -5,7 +5,7 @@
 				<image :src="'../../static/icon/' + icon + '.png'" mode=""></image>
 			</view>
 			<view class="input_box">
-				<input :type="inputType" v-model="inputVal" :placeholder="placeholder" placeholder-class="plhd_class"/>
+				<input :type="inputType" :value="inputVal" @input="onControlInput" :placeholder="placeholder" placeholder-class="plhd_class"/>
 			</view>
 			<view class="icon clear_icon" v-if="showClear && inputVal!='' && type != 'password'" @click="clearInput">
 				<image src="../../static/icon/close.png" mode="clear"></image>
@@ -22,11 +22,15 @@
 
 <script>
 	export default {
-		name:"mo-input",
+		name:"MoInput",
+		model: {
+			prop: 'value', // 将value作为该组件被使用(被父组件调用)时,v-model能取到的值
+			event: 'input' // emit(触发)input的时候，参数的值就是父组件v-model收到的值。
+		},
 		props:{
 			value: {
 				type: String,
-				default: ""
+				default: "text"
 			},
 			type: {
 				type: String,
@@ -61,8 +65,9 @@
 				btnRightTxt: this.btnRight
 			};
 		},
-		watch:{
+		watch: {
 			value(newV, oVal){
+				console.log(newV)
 				this.inputVal = newV
 			},
 			type(newV, oVal){
@@ -74,7 +79,12 @@
 			}
 		},
 		methods:{
+			onControlInput(e){
+				console.log(e)
+				this.$emit('input',e.target.value)
+			},
 			clearInput(){
+				console.log(this.inputVal)
 				this.inputVal = ''
 			},
 			showPassword(){

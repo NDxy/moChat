@@ -11,7 +11,7 @@
 			</view>
 		</view>
 		<view class="forms">
-			<mo-input icon="nickname" :showClear="true" v-model="userName" placeholder="请输入昵称"/>
+			<mo-input icon="nickname" :showClear="true" v-model="userName" placeholder="请输入昵称" />
 			<mo-select icon="label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select>
 			<mo-select icon="gender" hint="请选择性别">性别</mo-select>
 			<mo-select icon="birthday" hint="请选择生日">生日</mo-select>
@@ -25,13 +25,18 @@
 
 <script>
 	let _this;
+	// import moInput from '../../components/mo-input/mo-input.vue'
 	export default {
 		data() {
 			return {
 				headerImage: '',
-				headerdefault: '../../static/header.jpeg'
+				headerdefault: '../../static/header.jpeg',
+				userName: ''
 			};
 		},
+		// components:{
+		// 	moInput
+		// },
 		onLoad() {
 			_this = this
 		},

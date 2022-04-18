@@ -8,7 +8,7 @@
 
 <script>
 	export default {
-		name:"mo-button",
+		name:"MoButton",
 		props:{
 		},
 		data() {

@@ -23,7 +23,7 @@
 
 <script>
 	export default {
-		name:"mo-input",
+		name:"MoSelect",
 		props:{
 			icon: {
 				type: String,

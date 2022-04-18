@@ -22,7 +22,7 @@
 
 <script>
 	export default {
-		name:"mo-list",
+		name:"MoList",
 		props:{
 			icon: {
 				type: String,

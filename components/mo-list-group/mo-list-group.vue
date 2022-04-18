@@ -5,7 +5,7 @@
 </template>
 <script>
 	export default {
-		name: 'UniList'
+		name: 'MoListGroup'
 	}
 </script>
 <style>
