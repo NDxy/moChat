@@ -5,21 +5,18 @@
 				欢迎登录
 			</view>
 			<view class="hint">
-				还没有账户？<text class="register" @click="toRegister">立即注册</text>
+				还没有账户？<text class="register" @click="_toRegister">立即注册</text>
 			</view>
 		</view>
 		<view class="forms">
-			{{userName}}
-			{{password}}
-			
 			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
 			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码" />
-			<mo-button @click="toHome">登 录</mo-button>
+			<mo-button @click="_toHome">登 录</mo-button>
 		</view>
 		<view class="forget">
-			<text class="register" @click="toResetPassword">忘记密码？</text>
+			<text class="register" @click="_toResetPassword">忘记密码？</text>
 		</view>
-		
+		<mo-modal></mo-modal>
 	</view>
 </template>
 
@@ -27,25 +24,46 @@
 	export default {
 		data() {
 			return {
-				userName: '',
-				password: ''
+				userName: '1234',
+				password: '1234'
 			};
 		},
 		methods:{
-			toRegister(){
+			_toRegister(){
 				uni.navigateTo({
 					url: '../register/register'
 				})
 			},
-			toHome(){
+			_toHome(){
+				console.log(this.$refs)
+				if(!this.check()){
+					return
+				}
 				uni.switchTab({
 					url: '../news/index'
 				})
 			},
-			toResetPassword(){
+			_toResetPassword(){
 				uni.navigateTo({
 					url: '../reset-password/reset-password'
 				})
+			},
+			check(){
+				if(this.userName == ''){
+					uni.showToast({
+						icon: 'none',
+						title: '请输入用户名'
+					})
+					return false
+				}
+				if (this.password == ''){
+					uni.showToast({
+						icon: 'none',
+						title: '请输入用户密码'
+					})
+					return false
+				}
+				return true
 			}
 		}
 	}

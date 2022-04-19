@@ -5,12 +5,12 @@
 				<image :src="'../../static/icon/' + icon + '.png'" mode=""></image>
 			</view>
 			<view class="input_box">
-				<input :type="inputType" :value="inputVal" @input="onControlInput" :placeholder="placeholder" placeholder-class="plhd_class"/>
+				<input :type="inputType" :value="valueModel" @input="onControlInput" :placeholder="placeholder" placeholder-class="plhd_class"/><!-- @blur="onControlBlur" @focus="onControlFocus" -->
 			</view>
-			<view class="icon clear_icon" v-if="showClear && inputVal!='' && type != 'password'" @click="clearInput">
+			<view class="icon clear_icon" v-if="showClear && valueModel!=''" @click="clearInput"> <!-- && type != 'password' -->
 				<image src="../../static/icon/close.png" mode="clear"></image>
 			</view>
-			<view class="icon see_icon" v-if="type == 'password' && inputVal!=''" @click="showPassword">
+			<view class="icon see_icon" v-if="type == 'password' && valueModel!=''" @click="showPassword">
 				<image :src="'../../static/icon/'+ (eyes?'nosee':'cansee') +'.png'" mode="see"></image>
 			</view>
 			<view v-if="btnRightTxt != ''" class="btn_right" :class="{disabled: rbtnDisabled}" @click="rbtnClick">
@@ -59,17 +59,24 @@
 		},
 		data() {
 			return {
-				inputVal: this.value,
 				eyes: false,
 				inputType: this.type,
 				btnRightTxt: this.btnRight
 			};
 		},
+		computed: {
+            valueModel: {
+                get: function () {
+                    //实际使用的是value值
+                    return this.value;
+                },
+                set: function (val) {
+                    //侦听到setter()事件，将值传递回父级组件
+                    this.$emit('input', val);
+                }
+            }
+        },
 		watch: {
-			value(newV, oVal){
-				console.log(newV)
-				this.inputVal = newV
-			},
 			type(newV, oVal){
 				this.inputType = type
 				this.eyes = newV != 'password'
@@ -80,12 +87,16 @@
 		},
 		methods:{
 			onControlInput(e){
-				console.log(e)
-				this.$emit('input',e.target.value)
+				this.$emit('input', e.detail.value)
 			},
-			clearInput(){
-				console.log(this.inputVal)
-				this.inputVal = ''
+			// onControlFocus(e){
+			// 	this.$emit('focus',e.detail.value)
+			// },
+			// onControlBlur(e){
+			// 	this.$emit('blur',e.detail.value)
+			// },
+			clearInput(e){
+				this.valueModel = ''
 			},
 			showPassword(){
 				this.eyes = !this.eyes

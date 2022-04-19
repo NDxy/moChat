@@ -1,5 +1,7 @@
 import App from './App'
+import moModal from './components/mo-modal/mo-modal.vue'
 
+Vue.component('mo-modal', moModal) 
 // #ifndef VUE3
 import Vue from 'vue'
 Vue.config.productionTip = false
