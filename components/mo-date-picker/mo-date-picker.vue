@@ -12,7 +12,7 @@
 						</text>
 					</template>
 				</view>
-				<input class="value" type="text" :value="title" :placeholder="hint" placeholder-class="hint" :disabled="true" @input="onControlInput" />
+				<input class="value" type="text" :value="valueModel" :placeholder="hint" placeholder-class="hint" :disabled="true" @input="onControlInput" />
 				<view class="icon right_icon">
 					<image :src="'../../static/icon/right.png'" mode="scaleToFill"></image>
 				</view>
@@ -23,12 +23,15 @@
 			<view class="popup_content">
 				<text class="popup_share_title">{{title}}</text>
 				<view class="picker">
-					<picker-view :indicator-style="indicatorStyle" :value="dateValue" @change="bindChange">
+					<picker-view :indicator-style="indicatorStyle" v-model="dateValue" @change="bindChange">
 						<picker-view-column>
-							<view class="item" v-for="(item,index) in years" :key="item.value">{{item}}</view>
+							<view class="item" v-for="(item,index) in years" :key="item.value">{{item}}年</view>
 						</picker-view-column>
 						<picker-view-column>
-							<view class="item" v-for="(item,index) in months" :key="item.value">{{item}}</view>
+							<view class="item" v-for="(item,index) in months" :key="item.value">{{item}}月</view>
+						</picker-view-column>
+						<picker-view-column>
+							<view class="item" v-for="(item,index) in days" :key="item.value">{{item}}日</view>
 						</picker-view-column>
 					</picker-view>
 				</view>
@@ -45,10 +48,14 @@
 	let _this;
 	export default {
 		name: 'moDatePicker',
+		model: {
+			prop: 'value', // 将value作为该组件被使用(被父组件调用)时,v-model能取到的值
+			event: 'input' // emit(触发)input的时候，参数的值就是父组件v-model收到的值。
+		},
 		props: {
 			value: {
-				type: [Boolean, String],
-				default: false
+				type: [String, Number, Boolean, Array, Object],
+				default: ""
 			},
 			title: {
 				type: String,
@@ -64,75 +71,91 @@
 			},
 			hint: String
 		},
+		computed: {
+            valueModel: {
+                get: function () {
+                    //实际使用的是value值
+                    return this.value;
+                },
+                set: function (val) {
+                    //侦听到setter()事件，将值传递回父级组件
+                    this.$emit('input', val);
+                }
+            }
+        },
 		data() {
 			const date = new Date()
 			const years = []
 			const year = date.getFullYear()
 			const months = []
 			const month = date.getMonth() + 1
+			const days = []
+			const day = date.getDate()
 			for (let i = 1990; i <= date.getFullYear() + 10; i++) {
 				years.push(i)
 			}
 			for (let i = 1; i <= 12; i++) {
 				months.push(i)
 			}
+			for (let i = 1; i <= mGetDate(year, month); i++) {
+				days.push(i)
+			}
 			return {
 				years,
 				months,
+				days,
 				datas: {},
 				showPopup: false,
-				dateValue: [years.length - 11, month - 1],
-				dateText: years[years.length - 11].text + months[month - 1].text,
-				indicatorStyle: `height: 50px;`,
-				gmtCreateStart: '', //初始查询开始时间
-				gmtCreateEnd: '', //初始查询结束时间
+				dateValue: [years.length - 11, month - 1, day - 1],
+				indicatorStyle: `height: 50px;`
 			};
 		},
 		mounted() {
 			_this = this
-			const date = new Date()
+			const date = _this.value != '' ? new Date(_this.value) : new Date()
+			// const date = new Date()
 			const year = date.getFullYear()
 			const month = date.getMonth() + 1
-			_this.gmtCreateStart = dateFtt("yyyy-MM", new Date()) + "-01 00:00:00"; //初始查询开始时间
-			_this.gmtCreateEnd = dateFtt("yyyy-MM", new Date()) + "-" + mGetDate() + " 23:59:59"; //初始查询结束时间
+			const day = date.getDate()
+			_this.dateValue = [_this.years.indexOf(year), month - 1, day - 1]
 			_this.datas = {
-				value: [year,month],
-				textCN: year + '年' + month + '月',
-				text: year + '-' + month,
-				sAndeforTime: [_this.gmtCreateStart, _this.gmtCreateEnd],
-				sAndeforDate: [dateFtt("yyyy-MM", new Date()) + "-01", dateFtt("yyyy-MM", new Date()) + '-' + mGetDate(year, month)]
+				value: [year, month, day],
+				textCN: dateFtt("yyyy年MM月dd日", new Date(year + '-' + month + '-' + day))/* year + '年 ' + month + '月 ' + day + '日' */,
+				text: dateFtt("yyyy-MM-dd", new Date(year + '-' + month + '-' + day)),
 			}
-		},
-		watch: {
-			value(newVal) {
-				this.showPopup = newVal
-			},
-			showPopup(newVal) {
-				this.$emit("input", newVal);
-			},
 		},
 		methods: {
 			bindChange(e) {
 				const val = e.detail.value
 				const year = this.years[val[0]]
 				const month = this.months[val[1]]
-				_this.gmtCreateStart = dateFtt("yyyy-MM", new Date(year + '-' + month)) + "-01 00:00:00"
-				_this.gmtCreateEnd = dateFtt("yyyy-MM", new Date(year + '-' + month)) + '-' + mGetDate(year, month) + " 23:59:59"
-				_this.datas = {
-					value: [year,month],
-					textCN: year + '年 ' + month + '月',
-					text: year + '-' + month,
-					sAndeforTime: [_this.gmtCreateStart, _this.gmtCreateEnd],
-					sAndeforDate: [dateFtt("yyyy-MM", new Date(year + '-' + month)) + "-01", dateFtt("yyyy-MM", new Date(year + '-' + month)) + '-' + mGetDate(year, month)]
+				const day = this.days[val[2]]
+				if(val.slice(0, 2).join('') != _this.datas.value.slice(0, 2).join('')){
+					this.formatDate(year, month)
 				}
-
+				_this.datas = {
+					value: val,
+					textCN: dateFtt("yyyy年MM月dd日", new Date(year + '-' + month + '-' + day)),
+					text: dateFtt("yyyy-MM-dd", new Date(year + '-' + month + '-' + day)),
+				}
 			},
 			confirm() {
 				_this.$emit("change", _this.datas);
+				this.valueModel = _this.datas.text
 				_this.showPopup = false
 			},
 			cancel() {
 				_this.showPopup = false
+			},
+			onControlInput(e){
+				this.$emit('input', e.detail.value)
+			},
+			formatDate(year, month){
+				let days = []
+				for (let i = 1; i <= mGetDate(year, month); i++) {
+					days.push(i)
+				}
+				this.days = days
 			}
 		}
 	}

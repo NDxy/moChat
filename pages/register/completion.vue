@@ -34,7 +34,7 @@
 					userName: '',
 					label: '',
 					gender: 1,
-					birthday: '2022-04-20',
+					birthday: '',
 					district: '广西',
 					vocation: '互联网'
 				}

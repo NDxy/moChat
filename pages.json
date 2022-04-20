@@ -93,6 +93,33 @@
             }
             
         }
+        ,{
+            "path" : "pages/userInfo/gender",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑性别",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/userInfo/district",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选择地区",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/userInfo/vocation",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选择职业",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

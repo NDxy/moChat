@@ -23,11 +23,11 @@
 			};
 		},
 		onLoad(options) {
-			this.label = JSON.parse(options.userInfo).label
+			this.birthday = JSON.parse(options.userInfo).birthday
 		},
 		methods:{
 			_save(){
-				uni.$emit('updateInfo', {label: this.label})
+				uni.$emit('updateInfo', {birthday: this.birthday})
 				uni.navigateBack({
 					delta: 1
 				})
