@@ -1,6 +1,6 @@
 <template>
 	<view class="mo_list">
-		<view class="list_main">
+		<view class="list_main" @click="onClick">
 			<view class="left_icon" v-if="icon!=''">
 				<image :src="icon" mode="scaleToFill"></image>
 			</view>
@@ -43,6 +43,11 @@
 			return {
 				
 			};
+		},
+		methods:{
+			onClick(e){
+				this.$emit('click', e)
+			}
 		}
 	}
 </script>
@@ -61,7 +66,8 @@
 			justify-content: center;
 			align-items: center;
 			flex: 1;
-			padding: 24rpx 24rpx 24rpx 0;
+			padding-right: 24rpx;
+			min-height: 100rpx;
 			position: relative;
 			&::after{
 				content: "";
@@ -105,11 +111,11 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 40rpx;
-			height: 40rpx;
+			// width: 40rpx;
+			// height: 40rpx;
 			image{
-				width: 40rpx;
-				height: 40rpx;
+				width: 36rpx;
+				height: 36rpx;
 			}
 		}
 		.right_box{

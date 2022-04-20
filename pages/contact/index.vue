@@ -73,7 +73,7 @@
 <style lang="scss" scoped>
 	.group_name{
 		padding: 12rpx 24rpx;
-		background-color: #f5f5f5;
+		background-color: #f8f8f8;
 		font-size: 24rpx;
 	}
 </style>

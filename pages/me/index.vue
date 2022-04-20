@@ -22,7 +22,10 @@
 		<view class="select_list">
 			<mo-list-group>
 				<mo-list icon="../../static/icon/service.png" title="服务" />
-				<mo-list icon="../../static/icon/setting.png" title="设置" />
+				<mo-list icon="../../static/icon/setting.png" title="设置"/>
+				<!-- <mo-list icon="../../static/icon/setting.png" title="设置" :showRight="false">
+					<switch checked="true" @change="" style="transform:scale(0.7)" />
+				</mo-list> -->
 			</mo-list-group>
 			<mo-button @click='logout'>退出登录</mo-button>
 		</view>
@@ -50,7 +53,7 @@
 	.container{
 		width: 100vw;
 		height: 100vh;
-		background-color: #f5f5f5;
+		background-color: #f8f8f8;
 	}
 	.user_message{
 		padding: 42rpx 24rpx;

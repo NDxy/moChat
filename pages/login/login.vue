@@ -10,13 +10,12 @@
 		</view>
 		<view class="forms">
 			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
-			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码" />
+			<mo-input icon="password" type="password" :showClear="false" v-model="password" placeholder="请输入用户密码" />
 			<mo-button @click="_toHome">登 录</mo-button>
 		</view>
 		<view class="forget">
 			<text class="register" @click="_toResetPassword">忘记密码？</text>
 		</view>
-		<mo-modal></mo-modal>
 	</view>
 </template>
 
@@ -24,8 +23,8 @@
 	export default {
 		data() {
 			return {
-				userName: '1234',
-				password: '1234'
+				userName: '',
+				password: ''
 			};
 		},
 		methods:{
@@ -84,9 +83,9 @@
 		font-size: 26rpx;
 		color: #999;
 	}
-	// .register, .forget{
-	// 	// color: $mo-color-warning;
-	// }
+	.register, .forget{
+		color: $mo-color-warning;
+	}
 	.forget{
 		display: flex;
 		justify-content: flex-end;

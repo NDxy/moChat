@@ -1,0 +1,40 @@
+
+/**
+ * 页面主体
+ */
+.container{
+	width: 100vw;
+	height: 100vh;
+    box-sizing: border-box;
+	background-color: $mo-bg-color;
+}
+
+/**
+ * 设置内容表单
+ */
+.setting_item{
+	padding: $mo-spacing-base;
+	.setting_title,.setting_hint{
+		font-size: $mo-font-sm;
+		padding: $mo-spacing-sm $mo-spacing-base;
+		text{
+			padding: $mo-spacing-sm $mo-spacing-base;
+		}
+	}
+	.setting_hint{
+		color: $mo-text-color-placeholder;
+	}
+	.textarea_box{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: $mo-spacing-sm $mo-spacing-base;
+		.textarea_settting{
+			width: 100%;
+			padding: $mo-spacing-lg;
+			box-sizing: border-box;
+			border-radius: 50rpx;
+			background-color: $mo-bg-color-white;
+		}
+	}
+}

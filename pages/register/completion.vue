@@ -1,9 +1,9 @@
 <template>
 	<view class="container">
 		<view class="header">
-			<view class="header_handle" @click="changeImage">
+			<view class="header_handle" @click="_changeImage">
 				<view class="headerImg">
-					<image class="" :src="headerImage!=''?headerImage:headerdefault" mode="aspectFill" alt="选择头像"></image>
+					<image class="" :src="infoFrom.headerImage!=''?infoFrom.headerImage:headerdefault" mode="aspectFill" alt="选择头像"></image>
 				</view>
 				<view class="hint">
 					点击更换头像
@@ -11,13 +11,13 @@
 			</view>
 		</view>
 		<view class="forms">
-			<mo-input icon="nickname" :showClear="true" v-model="userName" placeholder="请输入昵称" />
-			<mo-select icon="label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select>
-			<mo-select icon="gender" hint="请选择性别">性别</mo-select>
-			<mo-select icon="birthday" hint="请选择生日">生日</mo-select>
-			<mo-select icon="district" hint="请选择地区">地区</mo-select>
-			<mo-select icon="vocation" hint="请选择职业">职业</mo-select>
-			<mo-button @click='completion'>提交信息</mo-button>
+			<mo-input icon="nickname" v-model="infoFrom.userName" placeholder="请输入昵称" />
+			<mo-select @click="_editPage('label')" icon="label" v-model="infoFrom.label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select>
+			<mo-select @click="_editPage('gender')" icon="gender" v-model="infoFrom.gender" hint="请选择性别">性别</mo-select>
+			<mo-select @click="_editPage('birthday')" icon="birthday" v-model="infoFrom.birthday" hint="请选择生日">生日</mo-select>
+			<mo-select @click="_editPage('district')" icon="district" v-model="infoFrom.district" hint="请选择地区">地区</mo-select>
+			<mo-select @click="_editPage('vocation')" icon="vocation" v-model="infoFrom.vocation" hint="请选择职业">职业</mo-select>
+			<mo-button @click="_completion">提交信息</mo-button>
 		</view>
 		
 	</view>
@@ -25,13 +25,19 @@
 
 <script>
 	let _this;
-	// import moInput from '../../components/mo-input/mo-input.vue'
 	export default {
 		data() {
 			return {
-				headerImage: '',
 				headerdefault: '../../static/header.jpeg',
-				userName: ''
+				infoFrom:{
+					headerImage: '',
+					userName: '',
+					label: '',
+					gender: 1,
+					birthday: '2022-04-20',
+					district: '广西',
+					vocation: '互联网'
+				}
 			};
 		},
 		// components:{
@@ -41,14 +47,17 @@
 			_this = this
 		},
 		methods:{
-			completion(){
+			_completion(){
 				
 			},
-			getVerification(e){
-				this.rbtnDisabled = true;
-				this.countDown(60)
+			_editPage(path){
+				this.updateInfoData()
+				uni.navigateTo({
+					url: `../userInfo/${path}?userInfo=${JSON.stringify(this.infoFrom)}`
+				})
+				
 			},
-			changeImage(){
+			_changeImage(){
 				uni.chooseImage({
 					success(res) {
 						console.log(res)
@@ -57,6 +66,11 @@
 					fail(err) {
 						
 					}
+				})
+			},
+			updateInfoData(){
+				uni.$once('updateInfo', data => {
+					this.infoFrom = { ...this.infoFrom, ...data }
 				})
 			}
 		}

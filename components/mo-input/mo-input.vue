@@ -2,16 +2,16 @@
 	<view class="mo_input">
 		<view class="input_main">
 			<view class="icon" v-if="icon != ''">
-				<image :src="'../../static/icon/' + icon + '.png'" mode=""></image>
+				<image :src="'../../static/icon/' + icon + '.png'" mode="scaleToFill"></image>
 			</view>
 			<view class="input_box">
 				<input :type="inputType" :value="valueModel" @input="onControlInput" :placeholder="placeholder" placeholder-class="plhd_class"/><!-- @blur="onControlBlur" @focus="onControlFocus" -->
 			</view>
 			<view class="icon clear_icon" v-if="showClear && valueModel!=''" @click="clearInput"> <!-- && type != 'password' -->
-				<image src="../../static/icon/close.png" mode="clear"></image>
+				<image src="../../static/icon/close.png" mode="scaleToFill"></image>
 			</view>
 			<view class="icon see_icon" v-if="type == 'password' && valueModel!=''" @click="showPassword">
-				<image :src="'../../static/icon/'+ (eyes?'nosee':'cansee') +'.png'" mode="see"></image>
+				<image :src="'../../static/icon/'+ (eyes?'nosee':'cansee') +'.png'" mode="scaleToFill"></image>
 			</view>
 			<view v-if="btnRightTxt != ''" class="btn_right" :class="{disabled: rbtnDisabled}" @click="rbtnClick">
 				{{btnRightTxt}}
@@ -123,20 +123,18 @@
 			flex-direction: row;
 			justify-content: space-between;
 			align-items: center;
-			width: 80%;
+			width: 86%;
 			height: 80rpx;
 			padding: 12rpx 24rpx;
 			border-radius: 50rpx;
-			background-color: #f6f6f6;
+			background-color: $mo-bg-color-white;
 			.icon{
-				// width: 80rpx;
-				// height: 80rpx;
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				image{
-					width: 52rpx;
-					height: 52rpx;
+					width: $mo-icon-base;
+					height: $mo-icon-base;
 				}
 			}
 			.input_box{
@@ -149,12 +147,12 @@
 			}
 		}
 		.plhd_class{
-			color: #999;
+			color: $mo-text-color-placeholder;
 		}
 		.btn_right{
-			color: #20c3d0;
+			color: $mo-color-theme-lv1;
 			&.disabled{
-				color: #B9E8EA;
+				color: $mo-color-theme-lv4;
 			}
 		}
 	}

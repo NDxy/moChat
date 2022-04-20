@@ -7,9 +7,9 @@
 		</view>
 		<view class="forms">
 			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱"/>
-			<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
-			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码"/>
-			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请确认用户密码"/>
+			<mo-input icon="verification" type="text" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
+			<mo-input icon="password" type="password" v-model="password" placeholder="请输入用户密码"/>
+			<mo-input icon="password" type="password" v-model="password" placeholder="请确认用户密码"/>
 			<mo-button @click='register'>立即注册</mo-button>
 		</view>
 		

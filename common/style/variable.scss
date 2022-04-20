@@ -1,15 +1,42 @@
-$mo-color-primary-lv1: #20c3d0;
-$mo-color-primary-lv2: #3fd0d4;
-$mo-color-primary-lv3: #86D6D8;
-$mo-color-primary-lv4: #B9E8EA;
 
+/* 主题相关颜色 */
+$mo-color-theme-lv1: #20c3d0;
+$mo-color-theme-lv2: #3fd0d4;
+$mo-color-theme-lv3: #86D6D8;
+$mo-color-theme-lv4: #B9E8EA;
+
+/* 相关辅助色 */
 $mo-color-success: #55C976;
 $mo-color-warning: #FA6400;
 $mo-color-error: #dd524d;
 
-$mo-bg-color: #f5f5f5;
+/* 文字基本颜色 */
+$mo-text-color:#333;//基本色
+$mo-text-color-inverse:#fff;//反色
+$mo-text-color-grey:#999;//辅助灰色，如加载更多的提示信息
+$mo-text-color-placeholder: #808080;
+$mo-text-color-disable:#c0c0c0;
 
+/* 背景颜色 */
+$mo-bg-color: #f8f8f8;
+$mo-bg-color-white: #FFFFFF;
+$mo-bg-color-hover:#f1f1f1;//点击状态颜色
+$mo-bg-color-mask:rgba(0, 0, 0, 0.4);//遮罩颜色
+
+
+/* 图像图标 */
+$mo-icon-sm: 36rpx;
+$mo-icon-base: 52rpx;
+$mo-icon-lg: 120rpx;
+$mo-icon-llg: 160rpx;
+
+/* 字体大小 */
 $mo-font-llg: 60rpx;
 $mo-font-lg: 48rpx;
-$mo-font-m: 32rpx;
-$mo-font-s: 24rpx;
+$mo-font-base: 32rpx;
+$mo-font-sm: 24rpx;
+
+/* 间距 */
+$mo-spacing-sm: 12rpx;
+$mo-spacing-base: 24rpx;
+$mo-spacing-lg: 36rpx;

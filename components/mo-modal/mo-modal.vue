@@ -1,5 +1,5 @@
 <template>
-	<view class="mo_modal" v-show="opts.visible">
+	<view class="mo_modal" v-show="opts.visible" ref="modal">
 		<view class="modal_mask">
 			
 		</view>

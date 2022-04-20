@@ -28,13 +28,6 @@
 			}
 		},
 		methods:{
-			clearInput(){
-				this.inputVal = ''
-			},
-			showPassword(){
-				this.eyes = !this.eyes
-				this.inputType = this.eyes?'text':'password'
-			},
 			onClick(){
 				this.$emit('click')
 			}
@@ -53,9 +46,9 @@
 			flex-direction: row;
 			justify-content: center;
 			align-items: center;
-			width: 80%;
+			width: 86%;
 			height: 80rpx;
-			padding: 12rpx;
+			padding: 12rpx 24rpx;
 			border-radius: 50rpx;
 			background-image: linear-gradient(to right, #20c3d0, #b9e8ea);
 			text-align: center;
