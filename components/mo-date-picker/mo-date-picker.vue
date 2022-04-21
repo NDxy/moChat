@@ -1,7 +1,7 @@
 <template>
 	<view class="mo_date_picker">
-		<view class="handle_button">
-			<view class="handle_main" @click="showPopup = true">
+		<view class="mo_form_item">
+			<view class="form_item_main" @click="showPopup = true">
 				<view class="icon" v-if="icon != ''">
 					<image :src="'../../static/icon/' + icon + '.png'" mode="scaleToFill"></image>
 				</view>
@@ -12,7 +12,7 @@
 						</text>
 					</template>
 				</view>
-				<input class="value" type="text" :value="valueModel" :placeholder="hint" placeholder-class="hint" :disabled="true" @input="onControlInput" />
+				<input class="value align_right" type="text" :value="valueModel" :placeholder="hint" placeholder-class="hint" :disabled="true" @input="onControlInput" />
 				<view class="icon right_icon">
 					<image :src="'../../static/icon/right.png'" mode="scaleToFill"></image>
 				</view>
@@ -198,58 +198,6 @@
 </script>
 
 <style lang="scss">
-	.handle_button{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 24rpx 0;
-		.handle_main{
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			width: 86%;
-			height: 80rpx;
-			padding: 12rpx 24rpx;
-			border-radius: 50rpx;
-			background-color: $mo-bg-color-white;
-			.icon{
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				image{
-					width: $mo-icon-base;
-					height: $mo-icon-base;
-				}
-				&.right_icon{
-					image{
-						width: $mo-icon-sm;
-						height: $mo-icon-sm;
-					}
-				}
-			}
-			.title{
-				padding: 0 12rpx;
-			}
-			.value{
-				flex: 1;
-				display: inline-block;
-				width: 100%;
-				padding: 0 12rpx;
-				box-sizing: border-box;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				text-align: right;
-				.hint{
-					color: $mo-text-color-placeholder;
-					overflow: hidden;
-					white-space: nowrap;
-					text-overflow: ellipsis;
-				}
-			}
-		}
-	}
 	.popup_box {
 		position: fixed;
 		top: 0;

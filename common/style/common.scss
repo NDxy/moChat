@@ -38,3 +38,87 @@
 		}
 	}
 }
+
+/**
+ * 表单基础样式
+ */
+.mo_form_item{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 24rpx 0;
+	.form_item_main,.form_button_main{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		width: 86%;
+		height: 80rpx;
+		padding: 12rpx 24rpx;
+		border-radius: 50rpx;
+	}
+	.form_item_main{
+		background-color: $mo-bg-color-white;
+		.icon{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			image{
+				width: $mo-icon-base;
+				height: $mo-icon-base;
+			}
+			&.right_icon{
+				image{
+					width: $mo-icon-sm;
+					height: $mo-icon-sm;
+				}
+			}
+		}
+		.title{
+			padding: 0 12rpx;
+		}
+		.value{
+			flex: 1;
+			width: 100%;
+			padding: 0 12rpx;
+			box-sizing: border-box;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			input{
+				width: 100%;
+				box-sizing: border-box;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			&.align_right{
+				text-align: right;
+			}
+		}
+		.hint{
+			color: $mo-text-color-placeholder;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+		.btn_right{
+			color: $mo-color-theme-lv1;
+			&.disabled{
+				color: $mo-color-theme-lv4;
+			}
+		}
+	}
+	.form_button_main{
+		justify-content: center;
+		background-image: linear-gradient(to right, $mo-color-theme-lv1, $mo-color-theme-lv4);
+		text-align: center;
+		font-size: 36rpx;
+		font-weight: 700;
+		color: #FFF;
+		letter-spacing: 12rpx;
+		&.disabled{
+			background-image: linear-gradient(to right, lighten($mo-color-theme-lv1, 30%) , lighten($mo-color-theme-lv4, 30%));
+		}
+	}
+}

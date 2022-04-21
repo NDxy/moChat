@@ -1,6 +1,6 @@
 <template>
-	<view class="mo_button">
-		<view class="button_main" @click="onClick">
+	<view class="mo_form_item">
+		<view class="form_button_main" @click="onClick">
 			<slot />
 		</view> 
 	</view>
@@ -10,6 +10,7 @@
 	export default {
 		name:"MoButton",
 		props:{
+			disabled: Boolean
 		},
 		data() {
 			return {
@@ -34,28 +35,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	.mo_button{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 24rpx 0;
-		.button_main{
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-			width: 86%;
-			height: 80rpx;
-			padding: 12rpx 24rpx;
-			border-radius: 50rpx;
-			background-image: linear-gradient(to right, #20c3d0, #b9e8ea);
-			text-align: center;
-			font-size: 36rpx;
-			font-weight: 700;
-			color: #FFF;
-			letter-spacing: 12rpx
-		}
-	}
-</style>

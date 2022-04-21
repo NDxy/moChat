@@ -1,11 +1,11 @@
 <template>
-	<view class="mo_input">
-		<view class="input_main">
+	<view class="mo_form_item">
+		<view class="form_item_main">
 			<view class="icon" v-if="icon != ''">
 				<image :src="'../../static/icon/' + icon + '.png'" mode="scaleToFill"></image>
 			</view>
-			<view class="input_box">
-				<input :type="inputType" :value="valueModel" @input="onControlInput" :placeholder="placeholder" placeholder-class="plhd_class"/><!-- @blur="onControlBlur" @focus="onControlFocus" -->
+			<view class="value">
+				<input :type="inputType" :value="valueModel" @input="onControlInput" :placeholder="placeholder" placeholder-class="hint"/><!-- @blur="onControlBlur" @focus="onControlFocus" -->
 			</view>
 			<view class="icon clear_icon" v-if="showClear && valueModel!=''" @click="clearInput"> <!-- && type != 'password' -->
 				<image src="../../static/icon/close.png" mode="scaleToFill"></image>
@@ -111,49 +111,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	.mo_input{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 24rpx 0;
-		.input_main{
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: center;
-			width: 86%;
-			height: 80rpx;
-			padding: 12rpx 24rpx;
-			border-radius: 50rpx;
-			background-color: $mo-bg-color-white;
-			.icon{
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				image{
-					width: $mo-icon-base;
-					height: $mo-icon-base;
-				}
-			}
-			.input_box{
-				flex: 1;
-				input{
-					width: 100%;
-					padding: 0 12rpx;
-					box-sizing: border-box;
-				}
-			}
-		}
-		.plhd_class{
-			color: $mo-text-color-placeholder;
-		}
-		.btn_right{
-			color: $mo-color-theme-lv1;
-			&.disabled{
-				color: $mo-color-theme-lv4;
-			}
-		}
-	}
-</style>
