@@ -5,6 +5,7 @@
 				<text>选择你的性别</text>
 			</view>
 			<view class="setting_content">
+				<mo-select-radio v-model="gender" :range="range" :randeKey="label"/>
 			</view>
 			<view class="setting_hint">
 				<!-- <text>简介7天内只能修改三次</text> -->
@@ -18,7 +19,16 @@
 	export default {
 		data() {
 			return {
-				gender: ''
+				gender: 1,
+				range: [{
+					label: '男生',
+					value: 1,
+					icon: 'men'
+				},{
+					label: '女生',
+					value: 2,
+					icon: 'women'
+				}]
 			};
 		},
 		onLoad(options) {

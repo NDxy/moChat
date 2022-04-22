@@ -13,7 +13,7 @@
 		<view class="forms">
 			<mo-input icon="nickname" v-model="infoFrom.userName" placeholder="请输入昵称" />
 			<mo-select @click="_editPage('label')" icon="label" v-model="infoFrom.label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select>
-			<mo-select @click="_editPage('gender')" icon="gender" v-model="infoFrom.gender" hint="请选择性别">性别</mo-select>
+			<mo-select @click="_editPage('gender')" icon="gender" :value="(infoFrom.gender==1?'男':'女')" hint="请选择性别">性别</mo-select>
 			<mo-select @click="_editPage('birthday')" icon="birthday" v-model="infoFrom.birthday" hint="请选择生日">生日</mo-select>
 			<mo-select @click="_editPage('district')" icon="district" v-model="infoFrom.district" hint="请选择地区">地区</mo-select>
 			<mo-select @click="_editPage('vocation')" icon="vocation" v-model="infoFrom.vocation" hint="请选择职业">职业</mo-select>

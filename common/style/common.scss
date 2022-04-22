@@ -1,4 +1,28 @@
 
+/* 特殊公共样式 */
+/* 线 */
+.border_line{
+	position: relative;
+	&::after{
+		content: "";
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		height: 1px;
+		background-color: #c8c7cc;
+		transform: scaleY(.5);
+	}
+}
+/* 动画 */
+// 放缩
+@keyframes scale{
+	0% {transform: scale(.2)}
+	50% {transform: scale(1.4)}
+	100% {transform: scale(1)}
+}
+
+
 /**
  * 页面主体
  */
@@ -44,9 +68,35 @@
  */
 .mo_form_item{
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	padding: 24rpx 0;
+	// 表单组
+	.mo_form_item_group{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		border-radius: 50rpx;
+		background-color: $mo-bg-color-white;
+		width: 86%;
+		padding: 0 $mo-spacing-base;
+		.form_item_main{
+			@extend .border_line;
+			width: 100%;
+			.select_icon{
+				transform: scale(0);
+			}
+			.select_changed{
+				animation: scale .2s;
+				// animation-duration: .2s;
+				transform: scale(1);
+			}
+		}
+		.form_item_main:last-child::after {
+			height: 0
+		}
+	}
 	.form_item_main,.form_button_main{
 		display: flex;
 		flex-direction: row;
@@ -54,9 +104,10 @@
 		align-items: center;
 		width: 86%;
 		height: 80rpx;
-		padding: 12rpx 24rpx;
+		padding: $mo-spacing-sm $mo-spacing-base;
 		border-radius: 50rpx;
 	}
+	// 表单项主体
 	.form_item_main{
 		background-color: $mo-bg-color-white;
 		.icon{
@@ -76,6 +127,9 @@
 		}
 		.title{
 			padding: 0 12rpx;
+			&.flex_1{
+				flex: 1;
+			}
 		}
 		.value{
 			flex: 1;
@@ -109,6 +163,7 @@
 			}
 		}
 	}
+	// 按钮
 	.form_button_main{
 		justify-content: center;
 		background-image: linear-gradient(to right, $mo-color-theme-lv1, $mo-color-theme-lv4);
@@ -120,5 +175,10 @@
 		&.disabled{
 			background-image: linear-gradient(to right, lighten($mo-color-theme-lv1, 30%) , lighten($mo-color-theme-lv4, 30%));
 		}
+	}
+	// 隐式值
+	.value_hind{
+		display: none;
+		// visibility: hidden;
 	}
 }

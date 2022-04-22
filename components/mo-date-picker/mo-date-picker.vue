@@ -21,7 +21,7 @@
 		<view class="popup_box" :class="{ popup_show: showPopup }">
 			<view class="popup_mask" @click="showPopup = false"></view>
 			<view class="popup_content">
-				<text class="popup_share_title">{{title}}</text>
+				<text class="popup_share_title">{{hint}}</text>
 				<view class="picker">
 					<picker-view :indicator-style="indicatorStyle" v-model="dateValue" @change="bindChange">
 						<picker-view-column>
@@ -57,7 +57,7 @@
 				type: [String, Number, Boolean, Array, Object],
 				default: ""
 			},
-			title: {
+			hint: {
 				type: String,
 				default: ''
 			},
@@ -68,8 +68,7 @@
 			rbtnDisabled: {
 				type: Boolean,
 				default: false
-			},
-			hint: String
+			}
 		},
 		computed: {
             valueModel: {
@@ -91,7 +90,7 @@
 			const month = date.getMonth() + 1
 			const days = []
 			const day = date.getDate()
-			for (let i = 1990; i <= date.getFullYear() + 10; i++) {
+			for (let i = 1970; i <= date.getFullYear() + 10; i++) {
 				years.push(i)
 			}
 			for (let i = 1; i <= 12; i++) {
