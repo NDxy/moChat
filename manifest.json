@@ -1,5 +1,5 @@
 {
-    "name" : "moChat",
+    "name" : "聊天工具",
     "appid" : "__UNI__DEF341E",
     "description" : "",
     "versionName" : "1.0.0",
@@ -43,7 +43,9 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "ad" : {}
+            }
         }
     },
     /* 快应用特有相关 */

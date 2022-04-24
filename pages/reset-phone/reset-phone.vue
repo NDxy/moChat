@@ -2,17 +2,20 @@
 	<view class="container">
 		<view class="header">
 			<view class="title">
-				重置密码
+				更换手机号码
 			</view>
 		</view>
-		<view class="forms">
-			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱"/>
+		<view class="forms" v-if="step == 1">
+			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入当前绑定的手机号码"/>
 			<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
-			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请输入用户密码"/>
-			<mo-input icon="password" type="password" :showClear="true" v-model="password" placeholder="请确认用户密码"/>
-			<mo-button @click="resetPassword">立即重置</mo-button>
+			<mo-button @click="resetPassword">提交认证</mo-button>
 		</view>
 		
+		<view class="forms" v-else>
+			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入需新绑定的手机号码"/>
+			<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
+			<mo-button @click="resetPassword">立即更换</mo-button>
+		</view>
 	</view>
 </template>
 
@@ -20,8 +23,8 @@
 	export default {
 		data() {
 			return {
+				step: 1,
 				userName: '',
-				password: '',
 				verification: '',
 				btnRight: '获取验证码',
 				rbtnDisabled: false
@@ -29,9 +32,7 @@
 		},
 		methods:{
 			resetPassword(){
-				uni.navigateTo({
-					// url: '../register/register'
-				})
+				this.step = 2
 			},
 			getVerification(e){
 				this.rbtnDisabled = true;

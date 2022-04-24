@@ -44,9 +44,3 @@
 		}
 	}
 </script>
-
-<style lang="scss">
-	.container{
-		background-color: $mo-bg-color;
-	}
-</style>

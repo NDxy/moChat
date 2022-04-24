@@ -47,6 +47,13 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/reset-phone/reset-phone",
+			"style": {
+				"navigationBarTitleText": "更换手机号码",
+				"enablePullDownRefresh": false
+			}
+
 		}
 	    ,{
             "path" : "pages/register/completion",
@@ -116,6 +123,33 @@
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "选择职业",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/setting/setting",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "设置",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/service/service",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "服务",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/setting/safe",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "账号与安全",
                 "enablePullDownRefresh": false
             }
             

@@ -21,13 +21,13 @@
 		</view>
 		<view class="select_list">
 			<mo-list-group>
-				<mo-list icon="../../static/icon/service.png" title="服务" />
-				<mo-list icon="../../static/icon/setting.png" title="设置"/>
+				<mo-list icon="../../static/icon/service.png" @click="_toPage('../service/service')" title="服务" />
+				<mo-list icon="../../static/icon/setting.png" @click="_toPage('../setting/setting')" title="设置"/>
 				<!-- <mo-list icon="../../static/icon/setting.png" title="设置" :showRight="false">
 					<switch checked="true" @change="" style="transform:scale(0.7)" />
 				</mo-list> -->
 			</mo-list-group>
-			<mo-button @click='logout'>退出登录</mo-button>
+			<mo-button @click="_logout">退出登录</mo-button>
 		</view>
 	</view>
 </template>
@@ -40,8 +40,13 @@
 			};
 		},
 		methods:{
-			logout(){
+			_toPage(path){
 				uni.navigateTo({
+					url: path
+				})
+			},
+			_logout(){
+				uni.reLaunch({
 					url: '../login/login'
 				})
 			}
