@@ -1,20 +1,44 @@
 <template>
 	<view class="container">
+		<!-- <image class="bg_image" src="../../static/line-bg.jpg" mode="scaleToFill"></image> -->
 		<view class="header">
 			<view class="title">
 				欢迎登录
 			</view>
 			<view class="hint">
-				还没有账户？<text class="register" @click="_toRegister">立即注册</text>
+				<text class="register">欢迎登录mochat</text>
 			</view>
+			<image class="bg_icon" src="../../static/icon/bg_icon.png" mode="scaleToFill"></image>
 		</view>
 		<view class="forms">
-			<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
-			<mo-input icon="password" type="password" :showClear="false" v-model="password" placeholder="请输入用户密码" />
-			<mo-button @click="_toHome">登 录</mo-button>
-		</view>
-		<view class="forget">
-			<text class="register" @click="_toResetPassword">忘记密码？</text>
+			<view class="login_type_change">
+				<view v-if="loginType == 1" class="type_item" @click="()=>{loginType = 2}">
+					短信验证码登录<image src="../../static/icon/arrow-right.png" mode=""></image>
+				</view>
+				<view v-if="loginType == 2" class="type_item" @click="()=>{loginType = 1}">
+					<image src="../../static/icon/arrow-left.png" mode=""></image>账号密码登录
+				</view>
+			</view>
+			<view class="" v-if="loginType == 1">
+				<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
+				<mo-input icon="password" type="password" :showClear="false" v-model="password" placeholder="请输入用户密码" />
+				<mo-button @click="_toHome">登 录</mo-button>
+			</view>
+			<view class="" v-if="loginType == 2">
+				<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
+				<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
+				<mo-button @click="_toHome">登 录</mo-button>
+			</view>
+			<view class="forget">
+				<text class="register" @click="_toRegister">账号注册</text>｜<text class="register" @click="_toResetPassword">忘记密码？</text>
+			</view>
+			<!-- #ifdef MP-WEIXIN -->
+			<view class="onetap_login">
+				<view class="wechat_login">
+					<image src="../../static/wechat.png" mode="scaleToFill"></image> 微信一键登录
+				</view>
+			</view>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>
@@ -24,7 +48,12 @@
 		data() {
 			return {
 				userName: '',
-				password: ''
+				password: '',
+				verification: '',
+				btnRight: '获取验证码',
+				rbtnDisabled: false,
+				loginType: 1
+				
 			};
 		},
 		methods:{
@@ -35,9 +64,9 @@
 			},
 			_toHome(){
 				console.log(this.$refs)
-				if(!this.check()){
-					return
-				}
+				// if(!this.check()){
+				// 	return
+				// }
 				uni.switchTab({
 					url: '../news/index'
 				})
@@ -63,22 +92,66 @@
 					return false
 				}
 				return true
-			}
+			},
+			getVerification(e){
+				this.rbtnDisabled = true;
+				this.countDown(60)
+			},
+			countDown(time) {
+				if(time === 0){
+					this.rbtnDisabled = false;
+			        this.btnRight = '获取验证码';
+			        clearTimeout(this.timer);
+				} else {
+					time -= 1
+					this.btnRight = time + 's重新获取';
+					this.timer = setTimeout(()=>{this.countDown(time)},1000)
+				}
+			},
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
 	.container{
-		padding: 24rpx;
+		position: relative;
+		background: rgb(89,195,255);
+		background: linear-gradient(123deg, rgba(89,195,255,1) 4%, rgba(167,211,250,1) 17%, rgba(215,221,247,1) 40%, rgba(181,225,231,1) 65%, rgba(230,251,255,1) 97%);
 		.header{
-			margin: 80rpx;
+			position: relative;
+			z-index: 1;
+			padding: 200rpx 80rpx 120rpx 80rpx;
 			.title{
 				font-size: 48rpx;
+				font-weight: 900;
+			}
+			.bg_icon{
+				width: 240rpx;
+				height: 240rpx;
+				position: absolute;
+				right: 40rpx;
+				bottom: 40rpx;
+				opacity: .3;
+				transform: skewx(10deg);
+				perspective: 600;
 			}
 		}
 	}
-	
+	.forms{
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 350rpx;
+		height: calc(100vh - 350rpx);
+		z-index: 9;
+		box-sizing: border-box;
+		box-shadow: 0 -1px 2px #ffffff;
+		background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 10%, $mo-bg-color-gray 50%);
+        backdrop-filter: blur(4px); 
+		padding: 24rpx;
+		border-top-left-radius: 60rpx;
+		border-top-right-radius: 60rpx;
+	}
 	.hint{
 		font-size: 26rpx;
 		color: #999;
@@ -90,7 +163,39 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		margin: 80rpx;
-		@extend .hint
+		margin: 24rpx 64rpx;
+		@extend .hint;
+	}
+	.login_type_change{
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		padding: 24rpx 56rpx;
+		color: #333;
+		.type_item{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			image{
+				width: 52rpx;
+				height: 52rpx;
+			}
+		}
+	}
+	.onetap_login{
+		margin-top: 100rpx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.wechat_login{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		image{
+			margin-right: 12rpx;
+			width: 60rpx;
+			height: 60rpx;
+		}
 	}
 </style>

@@ -1,10 +1,15 @@
 <template>
-	<view class="content">
-		<view class="news_lists">
-			<news-list @click="pathTo" title="刘一" time="2021年6月1日" massge="在吗？" header="../../static/header.jpeg" status="1"></news-list>
-			<news-list @click="pathTo" title="陈二" time="2021年6月1日" massge="有事？" header="../../static/header.jpeg" status="1"></news-list>
-			<news-list @click="pathTo" title="张三" time="2021年6月1日" massge="你是谁？" header="../../static/header.jpeg" status="1"></news-list>
-			<news-list @click="pathTo" title="李四" time="2021年6月1日" massge="你在做什么？" header="../../static/header.jpeg" status="1"></news-list>
+	<view class="container" :style="'padding-top:'+ statusbarHeight + 'rpx'">
+		<view class="">
+			
+		</view>
+		<view class="content">
+			<view class="news_lists">
+				<news-list @click="pathTo" title="刘一" time="2021年6月1日" massge="在吗？" header="../../static/header.jpeg" status="1"></news-list>
+				<news-list @click="pathTo" title="陈二" time="2021年6月1日" massge="有事？" header="../../static/header.jpeg" status="1"></news-list>
+				<news-list @click="pathTo" title="张三" time="2021年6月1日" massge="你是谁？" header="../../static/header.jpeg" status="1"></news-list>
+				<news-list @click="pathTo" title="李四" time="2021年6月1日" massge="你在做什么？" header="../../static/header.jpeg" status="1"></news-list>
+			</view>
 		</view>
 	</view>
 </template>

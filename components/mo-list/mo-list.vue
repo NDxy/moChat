@@ -2,9 +2,9 @@
 	<view class="mo_list">
 		<view class="list_main" @click="onClick">
 			<view class="left_icon" v-if="icon!=''">
-				<image :src="icon" mode="scaleToFill"></image>
+				<image :src="icon" :class="{widen: widen}" mode="scaleToFill"></image>
 			</view>
-			<view class="list_content">
+			<view class="list_content" :class="{widen: widen, border_line: border}">
 				<view class="list_msg">
 					<view class="title">{{title}}</view>
 					<view class="note" v-if="note!=''">{{note}}</view>
@@ -37,6 +37,14 @@
 			note: {
 				type: String,
 				default: ''
+			},
+			widen: {
+				type: Boolean,
+				default: false
+			},
+			border: {
+				type: Boolean,
+				default: true
 			}
 		},
 		data() {
@@ -69,7 +77,10 @@
 			padding-right: 24rpx;
 			min-height: 100rpx;
 			position: relative;
-			&::after{
+			&.widen{
+				padding: 24rpx;
+			}
+			&.border_line::after{
 				content: "";
 				width: 100%;
 				position: absolute;
@@ -97,14 +108,16 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			width: 64rpx;
-			height: 64rpx;
 			padding-right: 24rpx;
 			image{
 				border-radius: 10rpx;
 				overflow: hidden;
-				width: 64rpx;
-				height: 64rpx;
+				width: 52rpx;
+				height: 52rpx;
+			}
+			.widen{
+				width: 120rpx;
+				height: 120rpx;
 			}
 		}
 		.right_icon{
