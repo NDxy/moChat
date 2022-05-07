@@ -1,0 +1,197 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3265691 */
+  src: url('/common/icon/iconfont.ttf?t=1651907283967') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-jia:before {
+  content: "\e74a";
+}
+
+.icon-jia1:before {
+  content: "\e711";
+}
+
+.icon-gerenzhongxin-copy:before {
+  content: "\fb2c";
+}
+
+.icon-lianxiren_xianxing:before {
+  content: "\e602";
+}
+
+.icon-shejiaoxinxi:before {
+  content: "\e620";
+}
+
+.icon-xiaoxi-:before {
+  content: "\e650";
+}
+
+.icon-lianxiren1:before {
+  content: "\e603";
+}
+
+.icon-xianxinglianxiren:before {
+  content: "\e60a";
+}
+
+.icon-wode:before {
+  content: "\f4cd";
+}
+
+.icon-xiaoxi:before {
+  content: "\f4ce";
+}
+
+.icon-gerenzhongxin:before {
+  content: "\e6b0";
+}
+
+.icon-arrow-right:before {
+  content: "\fb2b";
+}
+
+.icon-arrow-left:before {
+  content: "\e8c4";
+}
+
+.icon-changed:before {
+  content: "\e69f";
+}
+
+.icon-correct:before {
+  content: "\e631";
+}
+
+.icon-editor:before {
+  content: "\e639";
+}
+
+.icon-setting:before {
+  content: "\e601";
+}
+
+.icon-service:before {
+  content: "\e6a3";
+}
+
+.icon-women:before {
+  content: "\e6f3";
+}
+
+.icon-men:before {
+  content: "\e600";
+}
+
+.icon-left:before {
+  content: "\e635";
+}
+
+.icon-right:before {
+  content: "\e636";
+}
+
+.icon-area:before {
+  content: "\e68b";
+}
+
+.icon-job:before {
+  content: "\e611";
+}
+
+.icon-sex:before {
+  content: "\e642";
+}
+
+.icon-label:before {
+  content: "\e60f";
+}
+
+.icon-nickname:before {
+  content: "\e609";
+}
+
+.icon-birthday-1:before {
+  content: "\e62e";
+}
+
+.icon-district:before {
+  content: "\e653";
+}
+
+.icon-birthday:before {
+  content: "\e80f";
+}
+
+.icon-vocation:before {
+  content: "\e61a";
+}
+
+.icon-gender:before {
+  content: "\fb29";
+}
+
+.icon-tag:before {
+  content: "\e720";
+}
+
+.icon-cancel:before {
+  content: "\e724";
+}
+
+.icon-phone:before {
+  content: "\e608";
+}
+
+.icon-close:before {
+  content: "\e606";
+}
+
+.icon-password:before {
+  content: "\e649";
+}
+
+.icon-can-see:before {
+  content: "\e6cf";
+}
+
+.icon-no-see:before {
+  content: "\e6d1";
+}
+
+.icon-verification:before {
+  content: "\e614";
+}
+
+.icon-voice-1:before {
+  content: "\e664";
+}
+
+.icon-emoji-2:before {
+  content: "\e681";
+}
+
+.icon-send:before {
+  content: "\e652";
+}
+
+.icon-emoji-1:before {
+  content: "\e613";
+}
+
+.icon-voice:before {
+  content: "\e888";
+}
+
+.icon-lianxiren:before {
+  content: "\e612";
+}
+

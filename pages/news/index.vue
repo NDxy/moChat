@@ -1,6 +1,6 @@
 <template>
-	<view class="container" :style="'padding-top:'+ statusbarHeight + 'rpx'">
-		<view class="">
+	<view class="container">
+		<view class="iconfont icon-jia">
 			
 		</view>
 		<view class="content">
@@ -20,6 +20,9 @@
 			return {
 				title: 'Hello'
 			}
+		},  
+		onNavigationBarButtonTap(e) {
+			console.log(e,"点击了自定义按钮");
 		},
 		onLoad() {
 

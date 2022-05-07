@@ -1,6 +1,5 @@
 <template>
 	<view class="container">
-		<!-- <image class="bg_image" src="../../static/line-bg.jpg" mode="scaleToFill"></image> -->
 		<view class="header">
 			<view class="title">
 				欢迎登录
@@ -8,7 +7,6 @@
 			<view class="hint">
 				<text class="register">欢迎登录mochat</text>
 			</view>
-			<image class="bg_icon" src="../../static/icon/bg_icon.png" mode="scaleToFill"></image>
 		</view>
 		<view class="forms">
 			<view class="login_type_change">
@@ -19,12 +17,12 @@
 					<image src="../../static/icon/arrow-left.png" mode=""></image>账号密码登录
 				</view>
 			</view>
-			<view class="" v-if="loginType == 1">
+			<view class="" v-show="loginType == 1">
 				<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
 				<mo-input icon="password" type="password" :showClear="false" v-model="password" placeholder="请输入用户密码" />
 				<mo-button @click="_toHome">登 录</mo-button>
 			</view>
-			<view class="" v-if="loginType == 2">
+			<view class="" v-show="loginType == 2">
 				<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
 				<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
 				<mo-button @click="_toHome">登 录</mo-button>
