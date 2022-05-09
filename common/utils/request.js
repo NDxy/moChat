@@ -1,5 +1,5 @@
 import { requestURL } from './config'
-import { _showModal } from '../js/util.js'
+import { _showModal } from '../js/utils.js'
 
 function getType(data, method) { // 获取请求方式
 	let type = {}

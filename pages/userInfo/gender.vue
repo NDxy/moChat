@@ -19,15 +19,19 @@
 	export default {
 		data() {
 			return {
-				gender: 1,
+				gender: 0,
 				range: [{
 					label: '男生',
-					value: 1,
+					value: 0,
 					icon: 'men'
 				},{
 					label: '女生',
-					value: 2,
+					value: 1,
 					icon: 'women'
+				},{
+					label: '保密',
+					value: 2,
+					icon: 'gender-c'
 				}]
 			};
 		},

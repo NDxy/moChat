@@ -18,14 +18,14 @@
 				</view>
 			</view>
 			<view class="" v-show="loginType == 1">
-				<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
+				<mo-input icon="phone" type="text" :showClear="true" v-model="accountNo" placeholder="请输入账号" />
 				<mo-input icon="password" type="password" :showClear="false" v-model="password" placeholder="请输入用户密码" />
-				<mo-button @click="_toHome">登 录</mo-button>
+				<mo-button @click="_loginByAccountNo">登 录</mo-button>
 			</view>
 			<view class="" v-show="loginType == 2">
-				<mo-input icon="phone" type="text" :showClear="true" v-model="userName" placeholder="请输入手机号码/账号名/邮箱" />
-				<mo-input icon="verification" type="text" :showClear="true" v-model="verification" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='getVerification'/>
-				<mo-button @click="_toHome">登 录</mo-button>
+				<mo-input icon="phone" type="text" :showClear="true" v-model="phoneNumber" placeholder="请输入手机号码/账号名/邮箱" />
+				<mo-input icon="verification" type="text" :showClear="true" v-model="smsCode" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='_getVerification'/>
+				<mo-button @click="toHome">登 录</mo-button>
 			</view>
 			<view class="forget">
 				<text class="register" @click="_toRegister">账号注册</text>｜<text class="register" @click="_toResetPassword">忘记密码？</text>
@@ -42,12 +42,16 @@
 </template>
 
 <script>
+	import { chkPhone } from '../../common/js/utils.js'
+	import { loginByAccount, loginByPhoneNumber, genSmsCode } from '../../common/api/index.js'
 	export default {
 		data() {
 			return {
-				userName: '',
+				accountNo: '',
 				password: '',
-				verification: '',
+				phoneNumber: '',
+				smsCode: '',
+				bizId: '',
 				btnRight: '获取验证码',
 				rbtnDisabled: false,
 				loginType: 1
@@ -60,40 +64,106 @@
 					url: '../register/register'
 				})
 			},
-			_toHome(){
-				console.log(this.$refs)
-				// if(!this.check()){
-				// 	return
-				// }
-				uni.switchTab({
-					url: '../news/index'
-				})
-			},
 			_toResetPassword(){
 				uni.navigateTo({
 					url: '../reset-password/reset-password'
 				})
 			},
-			check(){
-				if(this.userName == ''){
+			_loginByAccountNo(){
+				if(!this.check(1)) return
+				loginByAccount({
+					accountNo: this.accountNo,
+					password: this.password
+				}).then(res => {
+					if(res.code == 0) {
+						uni.setStorageSync('token', res.data.token)
+						uni.setStorageSync('token', res.data.token)
+						_toHome()
+					}else{
+						uni.showToast({
+							icon:'none',
+							title: res.msg
+						})
+					}
+				})
+			},
+			_loginByPhone(){
+				if(!this.check(2)) return
+				loginByPhoneNumber({
+					phoneNumber: this.phoneNumber,
+					smsCode: this.smsCode,
+					bizId : this.bizId
+				}).then(res => {
+					if(res.code == 0) {
+						uni.setStorageSync('token', res.data.token)
+						uni.setStorageSync('token', res.data.token)
+						_toHome()
+					}else{
+						uni.showToast({
+							icon:'none',
+							title: res.msg
+						})
+					}
+				})
+			},
+			_getVerification(e){
+				if(this.phoneNumber == '' || !chkPhone(this.phoneNumber)){
+					uni.showToast({
+						icon:'none',
+						title: '请输入正确手机号码'
+					})
+					return false
+				}
+				genSmsCode(this.phoneNumber).then(res => {
+					if(res.code == 0){
+						this.countDown(60)
+						this.bizId = res.bizId
+						this.rbtnDisabled = true;
+					}else{
+						uni.showToast({
+							icon:'none',
+							title: res.msg
+						})
+					}
+				}).catch(err => {
+					console.log(err)
+				})
+			},
+			toHome(){
+				uni.switchTab({
+					url: '../news/index'
+				})
+			},
+			check(type){
+				if(this.accountNo == '' && type == 1){
 					uni.showToast({
 						icon: 'none',
 						title: '请输入用户名'
 					})
 					return false
 				}
-				if (this.password == ''){
+				if (this.password == '' && type == 1){
 					uni.showToast({
 						icon: 'none',
 						title: '请输入用户密码'
 					})
 					return false
 				}
+				if(this.phoneNumber == '' && type == 2 || !chkPhone(this.phoneNumber) && type == 2){
+					uni.showToast({
+						icon: 'none',
+						title: '请输入正确的手机号码'
+					})
+					return false
+				}
+				if (this.smsCode == '' && type == 2){
+					uni.showToast({
+						icon: 'none',
+						title: '请输入手机验证码'
+					})
+					return false
+				}
 				return true
-			},
-			getVerification(e){
-				this.rbtnDisabled = true;
-				this.countDown(60)
 			},
 			countDown(time) {
 				if(time === 0){

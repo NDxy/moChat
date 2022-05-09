@@ -13,7 +13,7 @@
 		<view class="forms">
 			<mo-input icon="nickname" v-model="infoFrom.userName" placeholder="请输入昵称" />
 			<mo-select @click="_editPage('label')" icon="label" v-model="infoFrom.label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select>
-			<mo-select @click="_editPage('gender')" icon="gender" :value="(infoFrom.gender==1?'男':'女')" hint="请选择性别">性别</mo-select>
+			<mo-select @click="_editPage('gender')" icon="gender" :value="(infoFrom.gender==0?'男':infoFrom.gender==1?'女':'保密')" hint="请选择性别">性别</mo-select>
 			<mo-select @click="_editPage('birthday')" icon="birthday" v-model="infoFrom.birthday" hint="请选择生日">生日</mo-select>
 			<mo-select @click="_editPage('district')" icon="district" v-model="infoFrom.district" hint="请选择地区">地区</mo-select>
 			<mo-select @click="_editPage('vocation')" icon="vocation" v-model="infoFrom.vocation" hint="请选择职业">职业</mo-select>
@@ -24,16 +24,22 @@
 </template>
 
 <script>
+	import { register } from '../../common/api/index.js'
 	let _this;
 	export default {
 		data() {
 			return {
 				headerdefault: '../../static/header.jpeg',
 				infoFrom:{
+					phoneNumber: '',
+					accountNo: '',
+					password: '',
+					smsCode: '',
+					bizId: '',
 					headerImage: '',
 					userName: '',
 					label: '',
-					gender: 1,
+					gender: 2,
 					birthday: '',
 					district: '广西',
 					vocation: '互联网'
@@ -43,12 +49,25 @@
 		// components:{
 		// 	moInput
 		// },
-		onLoad() {
+		onLoad(options) {
 			_this = this
 		},
 		methods:{
 			_completion(){
-				
+				register(this.infoFrom).then(res => {
+					if(res.code == 0){
+						uni.reLaunch({
+							url: '../login/login'
+						})
+					}else{
+						uni.showToast({
+							icon:'none',
+							title: res.msg
+						})
+					}
+				}).catch(err => {
+					
+				})
 			},
 			_editPage(path){
 				this.updateInfoData()

@@ -5,7 +5,7 @@
 				<image :src="'../../static/icon/' + icon + '.png'" mode="scaleToFill"></image>
 			</view>
 			<view class="value">
-				<input :type="inputType" :value="valueModel" @input="onControlInput" :placeholder="placeholder" placeholder-class="hint"/><!-- @blur="onControlBlur" @focus="onControlFocus" -->
+				<input :type="inputType" :value="valueModel" :maxlength="maxLenght" @input="onControlInput" :placeholder="placeholder" placeholder-class="hint"/><!-- @blur="onControlBlur" @focus="onControlFocus" -->
 			</view>
 			<view class="icon clear_icon" v-if="showClear && valueModel!=''" @click="clearInput"> <!-- && type != 'password' -->
 				<image src="../../static/icon/close.png" mode="scaleToFill"></image>
@@ -55,6 +55,10 @@
 			rbtnDisabled: {
 				type: Boolean,
 				default: false
+			},
+			maxLenght: {
+				type: Number,
+				default: 200,
 			}
 		},
 		data() {

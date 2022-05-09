@@ -1,8 +1,5 @@
 <template>
 	<view class="container">
-		<view class="iconfont icon-jia">
-			
-		</view>
 		<view class="content">
 			<view class="news_lists">
 				<news-list @click="pathTo" title="刘一" time="2021年6月1日" massge="在吗？" header="../../static/header.jpeg" status="1"></news-list>

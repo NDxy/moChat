@@ -14,11 +14,11 @@ export function loginByPhoneNumber (data) {
 	return request('/v1/app/loginByPhoneNumber ', 'post', data).then(res => res)
 }
 // 生成手机验证码
-export function login(data) {
-	return request(`/v1/app/genSmsCode/${(typeof data == 'string' ? data : '')}`, 'post', data).then(res => res)
+export function genSmsCode(data) {
+	return request(`/v1/app/genSmsCode/${(typeof data == 'string' ? data : '')}`, 'post', {}).then(res => res)
 }
 // 注册
-export function login(data) {
+export function register(data) {
 	return request('/v1/app/register ', 'post', data).then(res => res)
 }
 
