@@ -74,7 +74,7 @@
 			}
 
 		}, {
-			"path": "pages/friends/friendInfo",
+			"path": "pages/friendsAndGroup/friends/friendInfo",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
@@ -144,7 +144,34 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/friendsAndGroup/group/create-group",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "发起群聊",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/friendsAndGroup/friends/and-new-friends/and-new-friends",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "添加好友",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/userInfo/userQRcode",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "二维码名片",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "moChat",
