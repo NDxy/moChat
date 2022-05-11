@@ -1,5 +1,5 @@
 <template>
-	<view :class="{'hidden_tip': !showTip}">
+	<view class="tip_main" :class="{'show_tip': showTip}">
 		<view class="mask" @click="_hideTip"></view>
 		<view class="mo_form_item mo_tipmenu" :style="{top: coordinate[0] + 'rpx', right: coordinate[1] + 'rpx'}">
 			<view class="mo_form_item_group" :style="{backgroundColor: bgColor}">
@@ -47,7 +47,7 @@
 			},
 			bgColor: {
 				type: String,
-				default: "rgba(0, 0, 0, 0.9)"
+				default: "#333"
 			},
 			mask: {
 				type: Boolean,
@@ -55,7 +55,7 @@
 			},
 			show: {
 				type: Boolean,
-				default: true
+				default: false
 			}
 			//TODO: 多选适配
 		},
@@ -89,7 +89,6 @@
 			_onClick(e){
 				if(this.disabled) return
 				this.valueModel = e.value
-				console.log(e)
 				this.$emit('change', e)
 			},
 			_hideTip(){
@@ -101,31 +100,54 @@
 </script>
 
 <style lang="scss" scoped>
-	.hidden_tip{
+	.tip_main{
 		position: relative;
 		z-index: -1;
-	}
-	.mo_tipmenu{
-		min-width: 25%;
-		position: absolute;
-		z-index: 9999;
-		padding: 0;
-		.mo_form_item_group{
-			width: 100%;
-			border-radius: 20rpx;
+		opacity: 0;
+		transition: all 0.32s;
+		&.show_tip{
+			z-index: 1;
+			opacity: 1;
+			.mo_tipmenu{
+				transform: scale(1);
+			}
 		}
-	}
-	.form_item_main{
-		padding: 6rpx $mo-spacing-base!important;
-		background-color: transparent !important;
-		color: #FFF;
-	}
-	.mask{
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100vw;
-		height: 100vh;
-		z-index: 99;
+		.mo_tipmenu{
+			min-width: 25%;
+			position: absolute;
+			z-index: 9999;
+			padding: 0;
+			transform-origin: 100% 0;
+			transition: all 0.3s;
+			transform: scale(0);
+			&::before{
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				position: absolute;
+				right: -4rpx;
+				top: -42rpx;
+				border: $mo-spacing-base solid transparent;
+				border-bottom: $mo-spacing-base solid $mo-text-color;
+			}
+			.mo_form_item_group{
+				width: 100%;
+				border-radius: 20rpx;
+			}
+		}
+		.form_item_main{
+			padding: 6rpx $mo-spacing-base !important;
+			background-color: transparent !important;
+			color: #FFF;
+		}
+		.mask{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			z-index: 99;
+		}
 	}
 </style>

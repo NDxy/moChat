@@ -9,7 +9,7 @@
 				<news-list @click="_pathTo" title="李四" time="2021年6月1日" massge="你在做什么？" header="../../static/header.jpeg" status="1"></news-list>
 			</view>
 		</view>
-		<!-- <button @click="showTip = true">fasd</button> -->
+		<button @click="showTip = true">fasd</button>
 	</view>
 </template>
 
@@ -21,13 +21,15 @@
 				range: [{
 					label: '发起群聊',
 					value: 1,
-					path: 'group/createGroup'
+					path: '/pages/friendsAndGroup/group/create-group'
 				},{
 					label: '添加好友',
-					value: 2
+					value: 2,
+					path: '/pages/friendsAndGroup/friends/and-new-friends'
 				},{
 					label: '我的二维码',
-					value: 3
+					value: 3,
+					path: '/pages/userInfo/userQRcode'
 				}],
 				showTip: false
 			}
@@ -45,7 +47,10 @@
 				})
 			},
 			_menuChange(e){
-				
+				this.showTip = true
+				uni.navigateTo({
+					url: e.path
+				})
 			}
 		}
 	}

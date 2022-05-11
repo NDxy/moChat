@@ -143,35 +143,49 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/friendsAndGroup/group/create-group",
+			"style": {
+				"navigationBarTitleText": "发起群聊",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/friendsAndGroup/friends/and-new-friends",
+			"style": {
+				"navigationBarTitleText": "添加好友",
+				"app-plus": {
+					"titleNView": {
+						// "type": "transparent",
+						"titleColor": "#7A7E83",
+						"backgroundColor": "#f8f8f8",
+						"buttons": [{
+							"text": "搜索",
+							"width": "40px",
+							"fontSize": "14px",
+							"color": "#015c92",
+							"background": "rgba(0,0,0,0)"
+						}],
+						"searchInput": {
+							"backgroundColor": "#fff",
+							"borderRadius": "50%",
+							"placeholder": "请输入账号/手机号",
+							"disabled": false,
+							"align": "left"
+						}
+					}
+				}
+			}
+
+		}, {
+			"path": "pages/userInfo/userQRcode",
+			"style": {
+				"navigationBarTitleText": "二维码名片",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/friendsAndGroup/group/create-group",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "发起群聊",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/friendsAndGroup/friends/and-new-friends/and-new-friends",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "添加好友",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-        ,{
-            "path" : "pages/userInfo/userQRcode",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "二维码名片",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "moChat",
