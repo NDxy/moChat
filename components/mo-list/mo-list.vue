@@ -10,7 +10,7 @@
 					<view class="note" v-if="note!=''">{{note}}</view>
 				</view>
 				<view class="right_box">
-					<slot />
+					<slot name="rightBox"/>
 				</view>
 				<view class="right_icon" v-if="showRight">
 					<image src="../../static/icon/right.png" mode=""></image>
@@ -74,8 +74,9 @@
 			justify-content: center;
 			align-items: center;
 			flex: 1;
-			padding-right: 24rpx;
-			min-height: 100rpx;
+			padding: 24rpx;
+			padding-left: 0;
+			min-height: 56rpx;
 			position: relative;
 			&.widen{
 				padding: 24rpx;
@@ -116,8 +117,8 @@
 				height: 52rpx;
 			}
 			.widen{
-				width: 120rpx;
-				height: 120rpx;
+				width: 100rpx;
+				height: 100rpx;
 			}
 		}
 		.right_icon{

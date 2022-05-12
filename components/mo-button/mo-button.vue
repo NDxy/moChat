@@ -1,6 +1,6 @@
 <template>
 	<view class="mo_form_item">
-		<view class="form_button_main" @click="onClick">
+		<view class="form_button_main" :class="{'mini_btn': size == 'mini'}" @click="onClick">
 			<slot />
 		</view> 
 	</view>
@@ -10,7 +10,11 @@
 	export default {
 		name:"MoButton",
 		props:{
-			disabled: Boolean
+			disabled: Boolean,
+			size: {
+				type: String,
+				default: 'default'
+			}
 		},
 		data() {
 			return {
