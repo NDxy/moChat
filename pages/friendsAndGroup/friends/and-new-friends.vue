@@ -2,7 +2,7 @@
 	<view>
 		<scroll-view scroll-y="true" class="scroll-Y">
 				<mo-list :widen="true" :showRight="false" v-for="(item, index) in newFriendsList" :key="item.userId"
-					:icon="item.avatar" :note="'密聊号：'+item.accountNo" :title="item.accountName" @click="_tofriendsInfo(info)">
+					:icon="item.avatar" :note="'密聊号：'+item.accountNo" :title="item.accountName" @click="_tofriendsInfo(item)">
 						<template v-slot:rightBox>
 							<mo-button size="mini">添加</mo-button>
 						</template>
