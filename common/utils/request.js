@@ -23,9 +23,9 @@ function getType(data, method) { // 获取请求方式
 	return type
 }
 function request(url, method, data, header = {'Content-Type': 'application/json'}) {
-	let cookie = wx.getStorageSync('ecmToken');
+	let cookie = wx.getStorageSync('token');
 	if (cookie) {
-	     header.Cookie = cookie;
+	     header.Authorization = cookie;
 	}
 	return new Promise((resolve, reject) => {
 		uni.request({
@@ -34,7 +34,7 @@ function request(url, method, data, header = {'Content-Type': 'application/json'
 			header,
 			success: res => {
 				if (res && res.header && res.header['Set-Cookie']) {
-					wx.setStorageSync('ecmToken', res.header['Set-Cookie']);   //保存Cookie到Storage
+					wx.setStorageSync('token', res.header['Set-Cookie']);   //保存Cookie到Storage
 				}
 				if(res.statusCode == 200) {
 					resolve(res.data)
@@ -66,9 +66,9 @@ function request(url, method, data, header = {'Content-Type': 'application/json'
 }
 // 定向请求
 function orientationRequest(domain, url, method, data, header = {'Content-Type': 'application/json'}) {
-	let cookie = wx.getStorageSync('ecmToken');
+	let cookie = wx.getStorageSync('token');
 	if (cookie) {
-	     header.Cookie = cookie;
+	     header.Authorization = cookie;
 	}
 	return new Promise((resolve, reject) => {
 		uni.request({
@@ -77,7 +77,7 @@ function orientationRequest(domain, url, method, data, header = {'Content-Type':
 			header,
 			success: res => {
 				if (res && res.header && res.header['Set-Cookie']) {
-					wx.setStorageSync('ecmToken', res.header['Set-Cookie']);   //保存Cookie到Storage
+					wx.setStorageSync('token', res.header['Set-Cookie']);   //保存Cookie到Storage
 				}
 				if(res.statusCode == 200) {
 					resolve(res.data)

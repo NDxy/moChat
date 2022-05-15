@@ -2,9 +2,9 @@
 	<view>
 		<scroll-view scroll-y="true" class="scroll-Y">
 				<mo-list :widen="true" :showRight="false" v-for="(item, index) in newFriendsList" :key="item.userId"
-					:icon="item.avatar" :note="'密聊号：'+item.accountNo" :title="item.accountName" @click="_tofriendsInfo(item)">
+					:icon="item.avatar" :note="'密聊号：'+item.accountNo" :title="item.accountName">
 						<template v-slot:rightBox>
-							<mo-button size="mini">添加</mo-button>
+							<mo-button @click="_toAddFriends(item)" size="mini">添加</mo-button>
 						</template>
 					</mo-list>
 		</scroll-view>
@@ -18,7 +18,7 @@
 	export default {
 		data() {
 			return {
-				newFriendsList: [{
+				newFriendsList: [/* {
 					"userId": "000001",
 					"accountNo": 100001,
 					"accountName": "张三",
@@ -36,7 +36,7 @@
 					"accountName": "王五",
 					"avatar": "/static/header.jpeg",
 					"registerTime": '2022-05-12'
-				}],
+				} */],
 				accountNo: ''
 			};
 		},
@@ -57,6 +57,11 @@
 			_tofriendsInfo(info){
 				uni.navigateTo({
 					url: './friendInfo?info=' + JSON.stringify(info)
+				})
+			},
+			_toAddFriends(info){
+				uni.navigateTo({
+					url: './addFriends?info=' + JSON.stringify(info)
 				})
 			},
 			queryFriends(accountNo) {

@@ -25,17 +25,17 @@
 			<view class="" v-show="loginType == 2">
 				<mo-input icon="phone" type="text" :showClear="true" v-model="phoneNumber" placeholder="请输入手机号码/账号名/邮箱" />
 				<mo-input icon="verification" type="text" :showClear="true" v-model="smsCode" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='_getVerification'/>
-				<mo-button @click="toHome">登 录</mo-button>
+				<mo-button @click="_loginByPhone">登 录</mo-button>
 			</view>
 			<view class="forget">
 				<text class="register" @click="_toRegister">账号注册</text>｜<text class="register" @click="_toResetPassword">忘记密码？</text>
 			</view>
 			<!-- #ifdef MP-WEIXIN -->
-			<view class="onetap_login">
+			<!-- <view class="onetap_login">
 				<view class="wechat_login">
 					<image src="../../static/wechat.png" mode="scaleToFill"></image> 微信一键登录
 				</view>
-			</view>
+			</view> -->
 			<!-- #endif -->
 		</view>
 	</view>
@@ -76,9 +76,13 @@
 					password: this.password
 				}).then(res => {
 					if(res.code == 0) {
+						uni.setStorageSync('mqttMessageKey', res.data.mqttMessageKey)
 						uni.setStorageSync('token', res.data.token)
-						uni.setStorageSync('token', res.data.token)
-						_toHome()
+						uni.showToast({
+							icon: 'none',
+							title: '登录成功~'
+						})
+						this._toHome()
 					}else{
 						uni.showToast({
 							icon:'none',
@@ -95,9 +99,13 @@
 					bizId : this.bizId
 				}).then(res => {
 					if(res.code == 0) {
+						uni.setStorageSync('mqttMessageKey', res.data.mqttMessageKey)
 						uni.setStorageSync('token', res.data.token)
-						uni.setStorageSync('token', res.data.token)
-						_toHome()
+						uni.showToast({
+							icon: 'none',
+							title: '登录成功~'
+						})
+						this._toHome()
 					}else{
 						uni.showToast({
 							icon:'none',
@@ -117,7 +125,7 @@
 				genSmsCode(this.phoneNumber).then(res => {
 					if(res.code == 0){
 						this.countDown(60)
-						this.bizId = res.bizId
+						this.bizId = res.data.bizId
 						this.rbtnDisabled = true;
 					}else{
 						uni.showToast({
@@ -129,7 +137,7 @@
 					console.log(err)
 				})
 			},
-			toHome(){
+			_toHome(){
 				uni.switchTab({
 					url: '../news/index'
 				})

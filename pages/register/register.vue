@@ -92,7 +92,7 @@
 				genSmsCode(this.infoFrom.phoneNumber).then(res => {
 					if(res.code == 0){
 						this.countDown(60)
-						this.infoFrom.bizId = res.bizId
+						this.infoFrom.bizId = res.data.bizId
 						this.rbtnDisabled = true;
 					}else{
 						uni.showToast({

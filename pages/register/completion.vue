@@ -11,12 +11,12 @@
 			</view>
 		</view>
 		<view class="forms">
-			<mo-input icon="nickname" v-model="infoFrom.userName" placeholder="请输入昵称" />
-			<mo-select @click="_editPage('label')" icon="label" v-model="infoFrom.label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select>
+			<mo-input icon="nickname" v-model="infoFrom.accountName" placeholder="请输入昵称" />
+			<!-- <mo-select @click="_editPage('label')" icon="label" v-model="infoFrom.label" hint="有趣的简介可以吸引更多的朋友喔">简介</mo-select> -->
 			<mo-select @click="_editPage('gender')" icon="gender" :value="(infoFrom.gender==0?'男':infoFrom.gender==1?'女':'保密')" hint="请选择性别">性别</mo-select>
 			<mo-select @click="_editPage('birthday')" icon="birthday" v-model="infoFrom.birthday" hint="请选择生日">生日</mo-select>
-			<mo-select @click="_editPage('district')" icon="district" v-model="infoFrom.district" hint="请选择地区">地区</mo-select>
-			<mo-select @click="_editPage('vocation')" icon="vocation" v-model="infoFrom.vocation" hint="请选择职业">职业</mo-select>
+			<!-- <mo-select @click="_editPage('district')" icon="district" v-model="infoFrom.district" hint="请选择地区">地区</mo-select> -->
+			<!-- <mo-select @click="_editPage('vocation')" icon="vocation" v-model="infoFrom.vocation" hint="请选择职业">职业</mo-select> -->
 			<mo-button @click="_completion">提交信息</mo-button>
 		</view>
 		
@@ -37,7 +37,7 @@
 					smsCode: '',
 					bizId: '',
 					headerImage: '',
-					userName: '',
+					accountName: '',
 					label: '',
 					gender: 2,
 					birthday: '',
@@ -50,14 +50,24 @@
 		// 	moInput
 		// },
 		onLoad(options) {
-			_this = this
+			_this = this; 
+			_this.infoFrom = { ...this.infoFrom, ...JSON.parse(options.info) } 
+			console.log(_this.infoFrom)
 		},
 		methods:{
 			_completion(){
 				register(this.infoFrom).then(res => {
 					if(res.code == 0){
-						uni.reLaunch({
-							url: '../login/login'
+						uni.showToast({
+							icon: 'none',
+							title: '注册成功',
+							success() {
+								setTimeout(() => {
+									uni.reLaunch({
+										url: '../login/login'
+									})
+								}, 1500)
+							}
 						})
 					}else{
 						uni.showToast({

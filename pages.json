@@ -185,7 +185,16 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/friendsAndGroup/friends/addFriends",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "加好友",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "moChat",

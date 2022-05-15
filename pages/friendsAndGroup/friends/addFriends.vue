@@ -13,22 +13,19 @@
 				</view>
 				<view class="user_info">
 					<view class="infos">
-						
-						<view class="info_item nick">
-							昵称：{{info.accountName}}
-						</view>
-						<view class="info_item">
-							密聊号：{{info.accountNo}}
-						</view>
-						<view class="info_item">
-							职业：IT
-						</view>
-						<view class="info_item">
-							地区：广西
+						<view class="setting_item">
+							<view class="setting_title">
+								<text>填写验证信息</text>
+							</view>
+							<view class="setting_content">
+								<view class="textarea_box">
+									<textarea class="textarea_settting" v-model="info.message" placeholder="填写验证信息" />
+								</view>
+							</view>
 						</view>
 					</view>
 					<view class="btn_box">
-						<mo-button>添加好友</mo-button>
+						<mo-button @click="_addFriend">添加好友</mo-button>
 					</view>
 				</view>
 			</view>
@@ -37,15 +34,38 @@
 </template>
 
 <script>
+	import {
+		addFriend
+	} from '../../../common/api/index.js'
 	export default {
 		data() {
 			return {
-				info: {}
+				info: {
+					message: ''
+				}
 			};
 		},
 		onLoad(option) {
-			this.info = JSON.parse(option.info)
-			console.log(this.info)
+			this.info = {...this.info, ...JSON.parse(option.info)}
+		},
+		methods:{
+			_addFriend(){
+				addFriend(this.info).then(res => {
+					if (res.code == 0) {
+						this.newFriendsList = res.data.items
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.msg
+						})
+					}
+				}).catch(err => {
+					uni.showToast({
+						icon: 'none',
+						title: res.msg
+					})
+				})
+			}
 		}
 	}
 </script>
