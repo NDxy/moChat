@@ -77,7 +77,8 @@
 				}).then(res => {
 					if(res.code == 0) {
 						uni.setStorageSync('mqttMessageKey', res.data.mqttMessageKey)
-						uni.setStorageSync('token', res.data.token)
+						uni.setStorageSync('TOKEN', res.data.token)
+						uni.setStorageSync('LOGINED', true)
 						uni.showToast({
 							icon: 'none',
 							title: '登录成功~'
@@ -100,7 +101,8 @@
 				}).then(res => {
 					if(res.code == 0) {
 						uni.setStorageSync('mqttMessageKey', res.data.mqttMessageKey)
-						uni.setStorageSync('token', res.data.token)
+						uni.setStorageSync('TOKEN', res.data.token)
+						uni.setStorageSync('LOGINED', true)
 						uni.showToast({
 							icon: 'none',
 							title: '登录成功~'

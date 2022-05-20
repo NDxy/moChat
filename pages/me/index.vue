@@ -46,6 +46,9 @@
 				})
 			},
 			_logout() {
+				uni.clearStorageSync('LOGINED')
+				uni.clearStorageSync('TOKEN')
+				uni.clearStorageSync('mqttMessageKey')
 				uni.reLaunch({
 					url: '../login/login'
 				})

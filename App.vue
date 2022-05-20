@@ -1,6 +1,14 @@
 <script>
 	export default {
 		onLaunch: function() {
+			const LOGINED = uni.getStorageSync('LOGINED')
+			if(!LOGINED){
+				setTimeout(() => {
+					uni.reLaunch({
+						url: './pages/login/login'
+					})
+				}, 1000)
+			}
 			uni.getSystemInfo({
 				success: (e) => {
 					let statusBar = 0

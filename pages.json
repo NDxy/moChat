@@ -1,14 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationStyle": "custom",
-				"navigationBarTitleText": "用户登录",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/news/index",
 			"style": {
 				// "navigationStyle": "custom",
@@ -22,6 +14,14 @@
 						}]
 					}
 				}
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "用户登录",
+				"enablePullDownRefresh": false
 			}
 		}, {
 			"path": "pages/chat/index",
@@ -184,17 +184,22 @@
 				"enablePullDownRefresh": false
 			}
 
+		}, {
+			"path": "pages/friendsAndGroup/friends/addFriends",
+			"style": {
+				"navigationBarTitleText": "加好友",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/friendsAndGroup/friends/await-pass",
+			"style": {
+				"navigationBarTitleText": "新的朋友",
+				"enablePullDownRefresh": false
+			}
+
 		}
-	    ,{
-            "path" : "pages/friendsAndGroup/friends/addFriends",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "加好友",
-                "enablePullDownRefresh": false
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "moChat",

@@ -1,20 +1,32 @@
 <template>
 	<view>
 		<view class="friend_for_group">
+			<mo-list v-for="(item,index) in menuList" :icon="item.header" :key="item.id" :title="item.userName" @click="_toAwait(item.path)"/>
+		</view>
+		<view class="friend_for_group">
 			<view class="group_name">
 				<text>测试组</text>
 			</view>
-			<mo-list v-for="(item,index) in friends" :showRight="false" :icon="item.header" :key="item.id" :title="item.userName"/>
+			<mo-list v-for="(item,index) in friends" :showRight="false" :icon="item.avatar" :key="item.userId" :title="item.userName"/>
 		</view>
 	</view>
 </template>
 
 <script>
+	import {
+		loadFriends
+	} from '../../common/api/index.js'
 	export default {
 		data() {
 			return {
+				menuList: [{
+					userName: '新的朋友',
+					header: '../../static/header.jpeg',
+					id: '1',
+					path: '/pages/friendsAndGroup/friends/await-pass'
+				}],
 				friends: [
-					{
+					/* {
 						userName: '刘一',
 						header: '../../static/header.jpeg',
 						id: '1'
@@ -63,9 +75,36 @@
 						userName: '郑十',
 						header: '../../static/header.jpeg',
 						id: '10'
-					},
+					}, */
 				]
 			};
+		},
+		onLoad() {
+			this.queryFriends()
+		},
+		methods:{
+			_toAwait(url){
+				uni.navigateTo({
+					url: url
+				})
+			},
+			queryFriends(){
+				loadFriends().then(res => {
+					if (res.code == 0) {
+						this.friends = res.data.items
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: res.msg
+						})
+					}
+				}).catch(err => {
+					uni.showToast({
+						icon: 'none',
+						title: res.msg
+					})
+				})
+			}
 		}
 	}
 </script>
