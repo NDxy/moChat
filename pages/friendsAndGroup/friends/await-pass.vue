@@ -2,9 +2,9 @@
 	<view>
 		<scroll-view scroll-y="true" class="scroll-Y">
 				<mo-list :widen="true" :showRight="false" v-for="(item, index) in newFriendsList" :key="item.invitId"
-					:icon="item.avatar" :note="'密聊号：'+item.userIdInvitor" :title="item.accountNameInvitor">
+					:icon="item.avatar" :note="'密聊号：'+item.userIdInvitor" :title="item.accountNameInvitor" @click="_tofriendsInfo(item)">
 						<template v-slot:rightBox>
-							<text v-if='item.isExpired'>已过期</text> <mo-button v-else @click="_toAddFriends(item)" size="mini">添加</mo-button>
+							<text v-if='item.isExpired'>已过期</text> <mo-button v-else @click.stop="_toAddFriends(item)" size="mini">添加</mo-button>
 						</template>
 					</mo-list>
 		</scroll-view>
@@ -43,7 +43,7 @@
 				})
 			},
 			queryInvite(accountNo) {
-				queryFriendInvite().then(res => {
+				queryFriendInvite({startTime: '2022-05-12'}).then(res => {
 					if (res.code == 0) {
 						this.newFriendsList = res.data.items
 					} else {
