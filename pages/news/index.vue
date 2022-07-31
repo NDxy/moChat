@@ -9,7 +9,7 @@
 				<news-list @click="_pathTo" title="李四" time="2021年6月1日" massge="你在做什么？" header="../../static/header.jpeg" status="1"></news-list>
 			</view>
 		</view>
-		<button @click="showTip = true">fasd</button>
+		<button @click="showTip = true">测试使用按钮</button>
 	</view>
 </template>
 

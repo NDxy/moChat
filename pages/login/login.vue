@@ -25,7 +25,7 @@
 			<view class="" v-show="loginType == 2">
 				<mo-input icon="phone" type="text" :showClear="true" v-model="phoneNumber" placeholder="请输入手机号码/账号名/邮箱" />
 				<mo-input icon="verification" type="text" :showClear="true" v-model="smsCode" placeholder="验证码" :btnRight="btnRight" :rbtnDisabled="rbtnDisabled" @rbtnClick='_getVerification'/>
-				<mo-button @click="_loginByPhone">登 录</mo-button>
+				<mo-button @click="_toHome">登 录</mo-button>
 			</view>
 			<view class="forget">
 				<text class="register" @click="_toRegister">账号注册</text>｜<text class="register" @click="_toResetPassword">忘记密码？</text>
