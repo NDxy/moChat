@@ -15,7 +15,7 @@
 					<view class="infos">
 						<view class="setting_item">
 							<view class="setting_title">
-								<text>填写验证信息</text>
+								<text>发送添加朋友申请</text>
 							</view>
 							<view class="setting_content">
 								<view class="textarea_box">
@@ -40,19 +40,17 @@
 	export default {
 		data() {
 			return {
-				info: {
-					message: ''
-				}
+				info: {}
 			};
 		},
 		onLoad(option) {
-			this.info = {...this.info, ...JSON.parse(option.info)}
+			this.info = JSON.parse(option.info)
 		},
-		methods:{
-			_addFriend(){
+		methods: {
+			_addFriend() {
 				addFriend(this.info).then(res => {
 					if (res.code == 0) {
-						this.newFriendsList = res.data.items
+
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -78,9 +76,9 @@
 		/* 浏览器不支持的时候显示 */
 		background-image:
 			radial-gradient(circle at 50% 50%, #2d82b5 15%, transparent 0%),
-			radial-gradient(circle at 30% 40%, #55C976 16%, transparent 0%),
-			radial-gradient(circle at 2% 90%, #dd524d 15%, transparent 16%),
-			radial-gradient(circle at 80% 20%, #88cdf6 20%, transparent 21%);
+			radial-gradient(circle at 30% 40%, #55C976 11%, transparent 0%),
+			radial-gradient(circle at 2% 19%, #dd524d 10%, transparent 10%),
+			radial-gradient(circle at 80% 20%, #88cdf6 20%, transparent 20%);
 
 	}
 
@@ -97,16 +95,23 @@
 			display: flex;
 			flex-direction: row;
 			position: relative;
-			.user_name_label{
+
+			.user_name_label {
 				flex: 1;
-				padding: $mo-spacing-lg;
-				line-height: 100rpx;
-				.nickname{
+				padding: $mo-spacing-base;
+				line-height: 60rpx;
+
+				.nickname {
 					font-size: $mo-font-llg;
 					font-weight: 700;
 				}
+
+				.label {
+					color: $mo-text-color-grey;
+				}
 			}
-			.user_header{
+
+			.user_header {
 				position: absolute;
 				bottom: -100rpx;
 				right: 36rpx;
@@ -116,7 +121,8 @@
 				box-shadow: 0rpx 0rpx 10rpx #2d82b5;
 				border: 2rpx solid rgba(165, 165, 165, 0.4);
 				z-index: 999;
-				image{
+
+				image {
 					width: 300rpx;
 					height: 300rpx;
 					border-radius: 50%;
@@ -133,27 +139,36 @@
 			box-sizing: border-box;
 			padding: $mo-spacing-lg;
 			backdrop-filter: blur(15px);
-			background-color: rgba(255, 255, 255, 0.1);
+			background-color: rgba(255, 255, 255, 0.4);
 			border-top-left-radius: 24rpx;
 			border-top: 2rpx solid rgba(165, 165, 165, 0.2);
 			border-left: 2rpx solid rgba(165, 165, 165, 0.2);
 			box-shadow: -22rpx 22rpx 22rpx rgba(1, 92, 146, 0.2);
-			.infos{
+
+			.infos {
 				line-height: 64rpx;
-				.info_item{
+
+				.info_item {
 					font-size: $mo-font-base;
 					color: $mo-text-color-grey;
-					&.nick{
+
+					&.nick {
 						font-size: $mo-font-lg;
 						color: $mo-text-color;
 					}
 				}
 			}
-			.btn_box{
+
+			.btn_box {
 				display: flex;
 				justify-content: space-between;
 				flex-direction: column;
 			}
 		}
+	}
+
+	.textarea_settting {
+		border-radius: 24rpx !important;
+		box-shadow: inset 0 0 8rpx rgba(1, 92, 146, 0.2);
 	}
 </style>

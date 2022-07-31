@@ -18,7 +18,7 @@
 	export default {
 		data() {
 			return {
-				newFriendsList: [/* {
+				newFriendsList: [{
 					"userId": "000001",
 					"accountNo": 100001,
 					"accountName": "张三",
@@ -36,17 +36,19 @@
 					"accountName": "王五",
 					"avatar": "/static/header.jpeg",
 					"registerTime": '2022-05-12'
-				} */],
+				}],
 				accountNo: ''
 			};
 		},
 		onLoad() {
 			// this.queryFriends(this.accountNo)
 		},
+		//点击搜索事件
 		onNavigationBarButtonTap(e) {
 			this.showTip = true
 			this.queryFriends(this.accountNo)
 		},
+		//点击搜索事件
 		onNavigationBarSearchInputConfirmed(e) {
 			this.queryFriends(e.text)
 		},
